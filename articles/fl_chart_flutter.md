@@ -17,7 +17,7 @@ fl_chartでシンプルな折れ線グラフを作成してみた。
 
 
 # 各種プロパティを見る
-[fl_chartのgithub](https://github.com/imaNNeoFighT/fl_chart/blob/master/repo_files/documentations/line_chart.md#sample-2-source-code)見るとわかると思うが、ドキュメントが充実していて非常にありがたい。
+[fl_chartのgithub](https://github.com/imaNNeoFighT/fl_chart/blob/master/repo_files/documentations/line_chart.md)見るとわかると思うが、ドキュメントが充実していて非常にありがたい。
 大概のことは実装できるかと思われる。
 
 ただ、プロパティの数が多く、充実しているからこそ逆に欲しい情報を探すのがやや面倒だったり、、、
@@ -449,7 +449,7 @@ like数が1.3Kのグラフパッケージ。
 fl_chartに比べるとドキュメントがあまり充実していない印象で、細かい調整は難しいかも？
 シンプルで好みのグラフが作成できそうなので、もうちょっと詳しく触ってみたい。
 
-・[syncfusion_flutter_charts](https://pub.dev/packages/syncfusion_flutter_charts)
+[syncfusion_flutter_charts](https://pub.dev/packages/syncfusion_flutter_charts)
 fl_chartの次にlike数が多いグラフパッケージ。
 ライセンスが必要ですが、個人で使う分には無料なので、今度軽く使ってみたい。
 有料だけあって中身は充実はしてるらしいので。
