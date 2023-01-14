@@ -227,7 +227,6 @@ class CheckboxListTileRiverpod extends ConsumerWidget {
             },
           ),
           separatorBuilder: (context, index) {
-            // print('separator: $index');
             return const Divider(height: 0.5);
           },
           itemCount: _valueList.length,
