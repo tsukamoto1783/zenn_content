@@ -12,7 +12,7 @@ published: true
 [LINE Developers＞Home＞ドキュメント＞Messaging API＞リッチメニューを使う](https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#creating-a-rich-menu-using-the-messaging-api)
 
 # 0.LINE Developersの登録
-※登録方法の詳細は割愛
+※登録方法の詳細は割愛(検索するとたくさん出てくるので、そちらを各自参照)
 
 LINE Developers に記載があるアクセストークンを主に使用
 ![](https://storage.googleapis.com/zenn-user-upload/9a9926a8c059-20230221.png)
@@ -92,6 +92,8 @@ curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/{richmenu_id} \
 
 # 応用
 curlで作成したリッチメニュを、AWS Lambdaで作成してみる。
+
+↓coming soon...
 [【Flutter / Lambda】LINEリッチメニュ作成]()
 
 # 備考
