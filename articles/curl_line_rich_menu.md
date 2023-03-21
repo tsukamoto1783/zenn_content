@@ -3,8 +3,10 @@ title: "curlでシンプルなリッチメニュの作成"
 emoji: "🌽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [curl, LINE, LineRichMenu]
-published: false
+published: true
 ---
+<!-- 公開に変更する -->
+<!-- 参考記事のURLを更新する -->
 
 公式のサンプル通りに、超シンプルなリッチメニュを作成。
 [LINE Developers＞Home＞ドキュメント＞Messaging API＞リッチメニューを使う](https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#creating-a-rich-menu-using-the-messaging-api)
@@ -90,7 +92,9 @@ curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/{richmenu_id} \
 
 # 応用
 curlで作成したリッチメニュを、AWS Lambdaで作成してみる。
-[comming soon... ]()
+[【Flutter / Lambda】LINEリッチメニュ作成]()
 
 # 備考
-headersのjsonデータの中身を変更すると、もっと多機能なリッチメニュを作成できるので色々試してみてください。
+- リクエストの確認には以下の記事が参考になった。
+  [APIクライアント開発時のモックに使えるhttpbinの紹介](https://qiita.com/sameyasu/items/adacceb8a1bee893599b)
+- headersのjsonデータの中身を変更すると、もっと多機能なリッチメニュを作成できるので色々試してみてください。
