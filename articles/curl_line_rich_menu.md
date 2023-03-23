@@ -1,5 +1,5 @@
 ---
-title: "curlでシンプルなLINEリッチメニュの作成"
+title: "【curl】シンプルなLINEリッチメニュの作成"
 emoji: "🌽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [curl, LINE, LineRichMenu]

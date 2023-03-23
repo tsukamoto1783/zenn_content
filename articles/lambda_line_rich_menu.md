@@ -1,5 +1,5 @@
 ---
-title: "【Flutter / AWS】LINEリッチメニュ作成"
+title: "【Flutter】【AWS】LINEリッチメニュを設定するアプリを作ろう"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [FLutter, Dart, MessagingAPI, Lambda, AWS]
