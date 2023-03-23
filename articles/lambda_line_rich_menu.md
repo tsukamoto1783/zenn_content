@@ -1,26 +1,26 @@
 ---
-title: "【Flutter / Lambda】LINEリッチメニュ作成"
+title: "【Flutter / AWS】LINEリッチメニュ作成"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [FLutter, Dart, MessagingAPI, Lambda, AWS]
-published: false
+published: true
 ---
-Lambdaでシンプルなリッチメニュを作成。
-ボタンを押下するとリッチメニュが作成される。だけのシンプルな構成のアプリ。
+FlutterとAWSで、「ボタンを押下するとLINEリッチメニュが作成される。」
+だけのシンプルな構成のアプリ。
 ![](https://storage.googleapis.com/zenn-user-upload/8a6d17ed482c-20230228.png)
 
-![](https://storage.googleapis.com/zenn-user-upload/b07c23649199-20230302.gif =600x)
+出来上がりはこんな感じ↓
+![](https://storage.googleapis.com/zenn-user-upload/6a2f33da162d-20230323.gif =600x)
 
 ※記事参考
-[curlでシンプルなリッチメニュの作成]()
+[curlでシンプルなリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
 
 # 対応したこと
 1. Lambda：関数作成、環境変数の設定
-2. Lambda：リッチメニュ作成するコード実装
+2. Lambda：リッチメニュ作成するコードの実装
 3. S3：リッチメニュに使用する画像データを格納
 4. API Gateway：API作成
-5. APIをCallするトリガーとなるボタンの実装(Flutter)
-
+5. APIをCallするアプリの作成
 
 
 ## 1. Lambda：関数作成、環境変数の設定
@@ -279,6 +279,7 @@ def set_default_rich_menu(rich_menu_id: str):
 ## 3. S3：リッチメニュに使用する画像データを格納
 - バケットを作成して、リッチメニュ用の画像データを格納する。
 ※画像サイズには規定があるので注意。(アスペクト比を確認してなくてやや詰まった、、)
+[アスペクト比計算ツール](https://ocadweb.com/aspectratiotools)
 ```txt
 - 画像フォーマット：JPEGまたはPNG
 - 画像の幅サイズ（ピクセル）：800以上、2500以下
@@ -287,12 +288,12 @@ def set_default_rich_menu(rich_menu_id: str):
 - 最大ファイルサイズ：1MB
 ```
 
-## 3. API Gateway：API作成
+## 4. API Gateway：API作成
 - APIを作成。APIタイプはHTTP APIを選択。(REST APIでも可)
 - 作成したAPIを、Lambdaのトリガーに設定する。設定したらAPIエンドポイントが発行されるので控えておく。
 ![](https://storage.googleapis.com/zenn-user-upload/b52a70cfc4b7-20230228.png)
 
-## 4. APIをCallするトリガーとなるボタンの実装(Flutter)
+## 5. APIをCallするアプリの作成
 APIをCallするボタンだけのシンプル画面構成。
 APIのCallにはDioパッケージを使用。
 API作成時に発行されたエンドポイントをコード内に記載。
@@ -301,8 +302,10 @@ API作成時に発行されたエンドポイントをコード内に記載。
 ```dart:APIをCallするためのボタンを実装するだけのコード
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -325,122 +328,94 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String apiGatewayEndpoint = {API GatewayのエンドポイントURLを指定}
+  // 変数:apiGatewayEndpointに、API作成時に発行されたエンドポイントを指定。
+  // 以下サンプルでは、flutter_dotenvを使用して環境変数として指定。
+  final String? apiGatewayEndpoint = dotenv.env['API_GATEWAY_ENDPOINT'];
   final dio = Dio();
-  bool isVisible1 = false;
-  bool isError1 = false;
-  Response<dynamic>? res1;
 
-  bool isVisible2 = false;
-  bool isError2 = false;
-  Response<dynamic>? res2;
+  bool isVisible = false;
+  bool isLoading = false;
+  Response<dynamic>? callApiResult;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("rich_menu_sample"),
+        title: const Text("APIGateway call test"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'API call test',
-            ),
-            ElevatedButton(
-              child: const Text("Call API ①"),
-              onPressed: () async {
-                setState(() {
-                  isVisible1 = false;
-                  isVisible2 = false;
-                });
-                try {
-                  final response1 =
-                      await dio.get('$apiGatewayEndpoint?is_bool=true');
-                  res1 = response1;
-                } catch (e) {
-                  isError1 = true;
-                  print(e);
-                }
-
-                setState(() {
-                  isVisible1 = true;
-                });
-              },
-            ),
-            Visibility(
-              visible: isVisible1,
-              child: Column(
-                children: [
-                  const Text("【↓response↓】"),
-                  Visibility(
-                    visible: !isError1,
-                    child: Text("$res1"),
-                  ),
-                  Visibility(
-                    visible: isError1,
-                    child: const Text("API呼び出しに失敗しました"),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-            ),
-            ElevatedButton(
-              child: const Text("Call API ②"),
-              onPressed: () async {
-                setState(() {
-                  isVisible1 = false;
-                  isVisible2 = false;
-                });
-                try {
-                  final response1 =
-                      await dio.get('$apiGatewayEndpoint?is_bool=false');
-                  res2 = response1;
-                } catch (e) {
-                  isError2 = true;
-                  print(e);
-                }
-
-                setState(() {
-                  isVisible2 = true;
-                });
-              },
-            ),
-            Visibility(
-              visible: isVisible2,
-              child: Column(
-                children: [
-                  const Text("【↓response↓】"),
-                  Visibility(
-                    visible: !isError2,
-                    child: Text("$res2"),
-                  ),
-                  Visibility(
-                    visible: isError2,
-                    child: const Text("API呼び出しに失敗しました"),
-                  ),
-                ],
-              ),
-            ),
+            _buildElevatedButton("Call API ①", true),
+            const SizedBox(height: 30),
+            _buildElevatedButton("Call API ②", false),
+            const SizedBox(height: 30),
+            const Text("↓【APIGateway call result】↓"),
+            const SizedBox(height: 30),
+            _buildResponseDisplay(isVisible, callApiResult),
+            isLoading ? const CircularProgressIndicator() : Container(),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildElevatedButton(String buttonText, bool isSwitch) {
+    return ElevatedButton(
+      child: Text(buttonText),
+      onPressed: () async {
+        _callApi(isSwitch);
+      },
+    );
+  }
+
+  Widget _buildResponseDisplay(bool isVisible, Response? callApiResult) {
+    Widget? displayText;
+    if (callApiResult == null) {
+      displayText = const Text("API呼び出しに失敗しました");
+    }
+    return isVisible ? (displayText ?? Text("$callApiResult")) : Container();
+  }
+
+  Future<Response?> _callApi(bool isSwitch) async {
+    // ボタン押下時の初期化処理
+    setState(() {
+      isVisible = false;
+      callApiResult = null;
+      isLoading = true;
+    });
+
+    try {
+      callApiResult = await dio.get('$apiGatewayEndpoint?is_swithc=$isSwitch');
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    } finally {
+      setState(() {
+        isVisible = true;
+        isLoading = false;
+      });
+    }
+    return callApiResult;
+  }
 }
+
 ```
 ::::
 
 # プチ詰まりポイント
 - クエリパラメータは文字列扱いなので、lambda側でboolに変換する処理が必要。
 - Dioの仕様に詰まった。200以外のエラコードはDioErrorとしてスローされる。
-- Dioの戻り地として、文字列か、{"body", "statusCode"}をKeyに持つJson形式である必要が基本的にはあり。（設定次第ではバイナリとかも可能）
+- Dioの戻り値として、文字列か、{"body", "statusCode"}をKeyに持つJson形式である必要が基本的にはあり。（設定次第ではバイナリとかも可能）
+- Lambdaでの出力形式は以下のドキュメント参照。
+  [プロキシ統合のための Lambda 関数の出力形式](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format)
 
 
 # おわり
 - フロント部分をFlutterにしたのはただの好み。(Dioの学習も兼ねて）
 - フロント部分から直接MessagingAPIをCallすれば済む話だが、AWSの勉強を兼ねてなのであしからず。
 
+# 参考記事
+[・curlでシンプルなリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
+[・【Flutter Web】flutter_dotenv：デプロイ時に'.env'が読み込まれない](https://zenn.dev/tsukatsuka1783/articles/64c9e06d516a3e)
