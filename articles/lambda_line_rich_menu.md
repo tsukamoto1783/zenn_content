@@ -13,7 +13,7 @@ FlutterとAWSで、「ボタンを押下するとLINEリッチメニュが作成
 ![](https://storage.googleapis.com/zenn-user-upload/6a2f33da162d-20230323.gif =600x)
 
 ※記事参考
-[curlでシンプルなリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
+[【curl】シンプルなLINEリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
 
 # 対応したこと
 1. Lambda：関数作成、環境変数の設定
@@ -417,5 +417,5 @@ class _MyHomePageState extends State<MyHomePage> {
 - フロント部分から直接MessagingAPIをCallすれば済む話だが、AWSの勉強を兼ねてなのであしからず。
 
 # 参考記事
-[・curlでシンプルなリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
-[・【Flutter Web】flutter_dotenv：デプロイ時に'.env'が読み込まれない](https://zenn.dev/tsukatsuka1783/articles/64c9e06d516a3e)
+[【curl】シンプルなLINEリッチメニュの作成](https://zenn.dev/tsukatsuka1783/articles/curl_line_rich_menu)
+[・【Flutter】flutter_dotenv：Flutter Webのデプロイ時に'.env'が読み込まれない](https://zenn.dev/tsukatsuka1783/articles/64c9e06d516a3e)
