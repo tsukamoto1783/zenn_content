@@ -1,8 +1,8 @@
 ---
-title: ""
+title: "個人的なwidget集"
 emoji: "📘"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: [flutter,dart,widget]
 published: false
 ---
 
