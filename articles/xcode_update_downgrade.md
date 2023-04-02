@@ -18,7 +18,7 @@ xcodebuild[62639:16214099]
 DVTCoreDeviceEnabledState: DVTCoreDeviceEnabledState_Disabled set via user default (DVTEnableCoreDevice=disabled)
 ```
 
-色々と試したが解消せず、以下のstack overflowのように、バージョンを戻す対応をすることに。（Xcodeのアップデートの嬉しさがあまり感じてなかったので）
+色々と試したが解消せず、以下のstack overflowのように、バージョンを戻す対応をすることに。（Xcodeのアップデートの嬉しさがあまり感じてなかった＆とりあえず作業を進めたかったため）
 https://stackoverflow.com/questions/75902251/flutter-ios-build-failed-dvtcoredeviceenabledstate-disabled
 
 # 1. 使用したいバージョンのXcodeをDL
