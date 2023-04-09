@@ -1,5 +1,5 @@
 ---
-title: "【Flutter】checkboxの状態管理をいろんなパターンで"
+title: "【Flutter】checkboxの状態管理をいろんなパターンで試す"
 emoji: "✅"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter,Dart,Checkbox,Riverpod,Stateful]
@@ -294,9 +294,75 @@ class CheckboxListTileRiverpodVer2 extends ConsumerWidget {
 # コメント
 - 状態を格納する変数をListにするかMapにするかは、実際使用するデータ構造によって使い分けか。
   今後他にもパターンがあれば追記していく。
-- Riverpodの複数パターンの時、値の更新をnotifyListeners()で行っているのが個人的にはもやもや、、
+- ~~Riverpodの複数パターンの時、値の更新をnotifyListeners()で行っているのが個人的にはもやもや、、
   StateProviderだけで完結させたかったが、Listの要素の値変更は上手く調整しないと監視されないみたい。
-  ここをもうちょっと調べていい感じにしてみる。
+  ここをもうちょっと調べていい感じにしてみる。~~
+
+# 追記
+Riverpodでの複数パターンの時、そもそもStateProviderの使用が良くなかった。。
+ListやMapを扱う場合は、以下の公式のドキュメントの文言より、StateNotifireProviderを使用する。
+```
+StateProvider は次のようなステートを公開するために使うべきではありません。
+・ステート自体が複雑なオブジェクトである（カスタムのクラスや List/Map など）
+```
+## ・【修正版】Checkboxを複数表示（List）
+ListViewで複数のチェックボックスを表示。
+値は、ListをStateNotifireProviderで管理。
+Listの中身が更新※されたら、画面が再生成される。
+
+※正しくは、「更新」ではなく、「List自体を上書き」が表現としては正しいか。
+→[参考記事]()
+
+::::details コード
+```dart
+final checkedListProvider = StateNotifierProvider<CheckedListState, List<bool>>(
+  (ref) => CheckedListState(),
+);
+
+class CheckedListState extends StateNotifier<List<bool>> {
+  CheckedListState() : super(List.generate(4, (index) => false));
+
+  void updateCheckedValue(int index, bool checkedValue) {
+    state = [
+      for (int i = 0; i < state.length; i++)
+        i == index ? checkedValue : state[i],
+    ];
+  }
+}
+
+class CheckboxListTileRiverpodNew extends ConsumerWidget {
+  CheckboxListTileRiverpodNew({Key? key}) : super(key: key);
+  final List<String> _valueList = ['A', 'B', 'C', 'D'];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final checkedList = ref.watch(checkedListProvider);
+    return Scaffold(
+      appBar: AppBar(title: const Text("Checkbox + Riverpod List Ver")),
+      body: Center(
+        child: ListView.separated(
+          itemBuilder: (context, index) => CheckboxListTile(
+            title: Text(_valueList[index]),
+            subtitle: Text(checkedList[index] ? "ON" : "OFF"),
+            value: checkedList[index],
+            onChanged: (bool? checkedValue) {
+              ref.watch(checkedListProvider.notifier).updateCheckedValue(index, checkedValue!);
+            },
+          ),
+          separatorBuilder: (context, index) {
+            return const Divider(height: 0.5);
+          },
+          itemCount: _valueList.length,
+        ),
+      ),
+    );
+  }
+}
+
+```
+::::
+
+
 
 # 参考記事
 ::::details 参考記事
@@ -315,3 +381,8 @@ https://zenn.dev/shu_illy/articles/d43e842ea9ad4e
 https://zenn.dev/taku_zenn/articles/e416eab158ae0f
 
 https://core-tech.jp/blog/tech_log/3069/
+
+<!-- 【List・Mapの取り扱い】 -->
+<!-- https://www.choge-blog.com/programming/dartmapupdatebalue/ -->
+<!-- https://www.choge-blog.com/programming/dart-list-elementcount/ -->
+<!-- https://www.choge-blog.com/programming/dart-map%EF%BC%88%E3%83%9E%E3%83%83%E3%83%97%EF%BC%89%E3%81%AEforeach%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF%EF%BC%9F/ -->
