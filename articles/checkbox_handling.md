@@ -315,7 +315,7 @@ Listの中身が更新※されたら、画面が再生成される。
 
 ::::details コード
 ```dart
-final checkedListProvider = StateNotifierProvider<CheckedListState, List<bool>>(
+final checkedListProvider = StateNotifierProvider.autoDispose<CheckedListState, List<bool>>(
   (ref) => CheckedListState(),
 );
 
