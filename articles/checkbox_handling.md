@@ -222,7 +222,8 @@ class CheckboxListTileRiverpod extends ConsumerWidget {
             subtitle: Text(checkedList[index] ? "ON" : "OFF"),
             value: checkedList[index],
             onChanged: (bool? checkedValue) {
-              checkedList[index] = checkedValue!;
+              ref.read(_checkedListProvider.notifier).state[index] =
+                  checkedValue!;
               changeNotifier.notifyListeners();
             },
           ),
@@ -240,6 +241,7 @@ class CheckboxListTileRiverpod extends ConsumerWidget {
 ## ・Checkboxを複数表示（Map）
 .map()で複数のチェックボックスを表示。
 値はList<Map>で管理。（動作はListパターンと一緒）
+※Riverpodの使用方法として良くない気はするが、一応機能はしてる。。
 
 ::::details コード
 ```dart
@@ -310,35 +312,39 @@ ListViewで複数のチェックボックスを表示。
 値は、ListをStateNotifireProviderで管理。
 Listの中身が更新※されたら、画面が再生成される。
 
-※正しくは、「更新」ではなく、「List自体を上書き」が表現としては正しいか。
-→[参考記事]()
+※正しくは、「更新」ではなく、「List自体を上書き」が表現としては正しい。
+
+→詳細記事：[【Flutter】【Riverpod 1.0系】StateProviderとStateNotifierProviderの違い](https://zenn.dev/tsukatsuka1783/articles/riverpod_state_notifier)
+
 
 ::::details コード
 ```dart
-final checkedListProvider = StateNotifierProvider.autoDispose<CheckedListState, List<bool>>(
+final checkedListProvider =
+    StateNotifierProvider.autoDispose<CheckedListState, List<bool>>(
   (ref) => CheckedListState(),
 );
 
 class CheckedListState extends StateNotifier<List<bool>> {
   CheckedListState() : super(List.generate(4, (index) => false));
 
-  void updateCheckedValue(int index, bool checkedValue) {
+  void updateListElement(int index, bool updateValue) {
     state = [
       for (int i = 0; i < state.length; i++)
-        i == index ? checkedValue : state[i],
+        i == index ? updateValue : state[i],
     ];
   }
 }
 
-class CheckboxListTileRiverpodNew extends ConsumerWidget {
-  CheckboxListTileRiverpodNew({Key? key}) : super(key: key);
+class CheckboxListSample extends ConsumerWidget {
+  CheckboxListSample({Key? key}) : super(key: key);
   final List<String> _valueList = ['A', 'B', 'C', 'D'];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final checkedList = ref.watch(checkedListProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text("Checkbox + Riverpod List Ver")),
+      appBar: AppBar(
+          title: const Text("StateNotifierProvider Sample")),
       body: Center(
         child: ListView.separated(
           itemBuilder: (context, index) => CheckboxListTile(
@@ -346,7 +352,9 @@ class CheckboxListTileRiverpodNew extends ConsumerWidget {
             subtitle: Text(checkedList[index] ? "ON" : "OFF"),
             value: checkedList[index],
             onChanged: (bool? checkedValue) {
-              ref.watch(checkedListProvider.notifier).updateCheckedValue(index, checkedValue!);
+              ref
+                  .watch(checkedListProvider.notifier)
+                  .updateListElement(index, checkedValue!);
             },
           ),
           separatorBuilder: (context, index) {
@@ -358,7 +366,6 @@ class CheckboxListTileRiverpodNew extends ConsumerWidget {
     );
   }
 }
-
 ```
 ::::
 
