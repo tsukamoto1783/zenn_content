@@ -7,7 +7,7 @@ published: true
 ---
 
 ※詳細は公式ドキュメント参照
-(Riverpod)[https://riverpod.dev/ja/docs/getting_started]
+[riverpod.dev](https://riverpod.dev/ja/docs/getting_started)
 
 
 # StateProvider の特徴
