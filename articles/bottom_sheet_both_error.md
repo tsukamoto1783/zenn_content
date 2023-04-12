@@ -1,12 +1,12 @@
 ---
-title: "【FLutter】Error:'ModalBottomSheetRoute' is imported from both ..."
+title: "【Flutter】Error:'ModalBottomSheetRoute' is imported from both ..."
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter,Dart]
 published: true
 ---
 
-Flutter3.3系から、FLutter3.7系にバージョンアップした際に、以下のエラーが発生。
+Flutter3.3系から、Flutter3.7系にバージョンアップした際に、以下のエラーが発生。
 
 ```
 Error: 'ModalBottomSheetRoute' is imported from both 'package:flutter/src/widgets/routes.dart' and 'package:flutter/src/material/bottom_sheet.dart'.
