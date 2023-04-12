@@ -7,7 +7,6 @@ published: false
 ---
 
 # flutter_flavorizr
-
 自動でflavor分けができるパッケージ？
 https://pub.dev/packages/flutter_flavorizr
 
