@@ -42,4 +42,8 @@ https://fvm.app/docs/getting_started/configuration#option-1---automatic-switchin
 [該当記事の箇所](https://zenn.dev/altiveinc/articles/flutter-version-management#global-%E3%82%92%E4%BD%BF%E3%81%88%E3%81%B0%E3%81%A9%E3%81%93%E3%81%A7%E3%82%82-flutter-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%8C%E4%BD%BF%E7%94%A8%E3%81%A7%E3%81%8D%E3%82%8B)
 
 こちらのglobal設定をすると、local上での"flutter"コマンドは、全てfvmで設定したバージョンが適応される。
-→F5ボタンでも適用されるはず？未検証。
+
+「プロジェクト毎のバージョン管理」というよりは、「個々のローカル環境のバージョン管理」のイメージ。
+→F5ボタンでも適用される。
+
+※ターミナルで「flutter --version」として、設定したバージョンが適応されているか確認し、適応されていない場合は、PC再起動したら適応されるかも。
