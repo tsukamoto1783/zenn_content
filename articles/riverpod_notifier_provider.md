@@ -3,7 +3,7 @@ title: "【Flutter】【Riverpod】NotifierProviderでdispose()したい"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter,Dart,Riverpod,NotifierProvider]
-published: false
+published: true
 ---
 
 ChangeNotifierProviderやStateNotifierProviderを使用する場合は、以下のようにcontrollerの破棄をしていたが、NotifierProviderの場合は、この書き方ではdispose()を実行できない。
