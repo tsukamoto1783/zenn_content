@@ -1,6 +1,6 @@
 ---
 title: "【Flutter】【Riverpod】NotifierProviderでdispose()したい"
-emoji: "🔥"
+emoji: "🗑️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter,Dart,Riverpod,NotifierProvider]
 published: true
