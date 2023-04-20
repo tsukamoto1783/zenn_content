@@ -1,15 +1,31 @@
 ---
-title: "【Flutter】unit testについて学ぶ"
+title: "【Flutter】ユニットテストについて学ぶ"
 emoji: "🧪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [test,flutter,dart, unitTest]
 published: false
-publication_name: 
+publication_name: ncdc
 ---
 
 https://docs.flutter.dev/cookbook/testing/unit/introduction
 上記の公式チュートリアルについて、書いてる通りに実行すれば簡単なユニットテストが数行で実行できる。
 
+
+ユニットテストの基本構成は以下。
+test関数の引数に、「test名」と「テストしたい処理」を書いていく。
+expect関数で、「テスト対象の変数やオブジェクト」と「期待する値や状態」を比較する。
+
+以下のテストコード例だと、足し算の結果が5になるかをテストしており、テストを実行するともちろん成功となる。
+```dart
+test('テスト名', () {
+  // テストしたい処理
+  int result = 2 + 3;
+
+  expect(result, 5); //test OK
+});
+```
+
+&nbsp;
 基本的なテスト方法は記載の通りだが、それだとあっさりしすぎなので、ここではもう少し深掘りしてユニットテストについて確認していく。
 
 :::message
@@ -19,21 +35,9 @@ Topics
 - test()と併用できるオプション関数
 :::
 
-
-# 基本構成
-ユニットテストの基本構成は以下。
-test関数の引数に、「test名」と「テストしたい処理」を書いていく。
-expect関数で、「テスト対象の変数やオブジェクト」と「期待する値や状態」を比較する。
-
-以下のテストコード例だと、足し算の結果が5になるかをテストしており、テストを実行するともちろん成功となる。
-```dart
-    test('テスト名', () {
-      // テストしたい処理
-      int result = 2 + 3;
-
-      expect(result, 5);
-    });
-```
+&nbsp;
+&nbsp;
+&nbsp;
 
 # test()
 [pub.dev/test function](https://pub.dev/documentation/test_core/latest/test_core.scaffolding/test.html)
@@ -46,6 +50,7 @@ description: テストの名前
 body: テストしたい処理
 ```
 オプションでプロパティの設定が必要な場合は、以下参照。
+&nbsp;
 
 ## 【各オプションプロパティの詳細】
 ### testOn:
@@ -100,6 +105,9 @@ test('足し算テスト', () {
 );
 ```
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 # expect()
 [pub.dev/expect function](https://pub.dev/documentation/matcher/latest/expect/expect.html)
@@ -120,6 +128,7 @@ expect(result, equals(5));
 ```
 
 オプションでプロパティの設定が必要な場合は、以下参照。
+&nbsp;
 
 ## 【各オプションプロパティの詳細】
 ### reason:
@@ -137,9 +146,10 @@ expect(result, equals(5));
 
  "false"または指定しない場合は、テストが実行される。
 
+&nbsp;
 
-## matcherとは？
-下記のような意味合いです。
+## 【matcherとは？】
+"matcher"とは、下記のような意味合いです。
 ```txt
 "特定のパターンや条件に一致するデータを見つけるために使用されるアルゴリズムやツールのこと。"
 
@@ -172,7 +182,9 @@ void main() {
 }
 ```
 
-
+&nbsp;
+&nbsp;
+&nbsp;
 
 # test()と併用できるオプションの関数
 オプションでtest関数と組み合わせて使用できる関数は、以下のような関数がある。
@@ -295,10 +307,13 @@ main tearDown
 group1 tearDownAll
 main tearDownAll
 ```
-----------
 
-<!-- # おわり -->
-<!-- 別の記事では、公式ドキュメントのモックを使ったユニットテストについても深堀りしてみましたので、よければこちらもご覧ください。 -->
+&nbsp;
+&nbsp;
+&nbsp;
+
+# おわり
+別の記事では、公式チュートリアルのモックを使ったユニットテストについても深堀りしてみましたので、よければこちらもご覧ください！
 
 <!-- 記事のURLを記載する。 -->
 <!-- https://docs.flutter.dev/cookbook/testing/unit/mocking -->
