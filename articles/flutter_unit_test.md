@@ -3,7 +3,7 @@ title: "【Flutter】ユニットテストについて学ぶ"
 emoji: "🧪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [test,flutter,dart, unitTest]
-published: false
+published: true
 publication_name: ncdc
 ---
 
