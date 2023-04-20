@@ -10,7 +10,7 @@ publication_name: ncdc
 
 モックを使用しない基本的なユニットテストについては、下記記事に記載しております。
 基本的なユニットテストについて確認したい方は、こちらぜひご参照ください。
-<!-- URL貼る -->
+https://zenn.dev/ncdc/articles/flutter_unit_test
 
 &nbsp;
 &nbsp;

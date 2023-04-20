@@ -315,5 +315,4 @@ main tearDownAll
 # おわり
 別の記事では、公式チュートリアルのモックを使ったユニットテストについても深堀りしてみましたので、よければこちらもご覧ください！
 
-<!-- 記事のURLを記載する。 -->
-<!-- https://docs.flutter.dev/cookbook/testing/unit/mocking -->
+https://zenn.dev/ncdc/articles/flutter_unit_test_mock
