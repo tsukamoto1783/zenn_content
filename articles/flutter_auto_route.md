@@ -17,6 +17,9 @@ https://pub.dev/packages/auto_route
 :::message
 auto_route 6.3.0時点での記事です。
 :::
+:::message
+バージョン5系と6系とで記載方法が違う箇所が多々あるので注意。
+::::
 
 # STEP1
 動作確認用に、ボタンを2画面表示するだけの簡単なアプリを作成する。
@@ -130,9 +133,22 @@ dev_dependencies:
 ドキュメントに倣って、AppRouterクラスとする。
 freezedなどを自動生成設定する時と基本的には同じ構造。
 
-※バージョン5系と6系とでドキュメントの記載が違うので注意。
 
-:::message
+
+
+
+```dart :app_router.dart
+part 'app_router.gr.dart';            
+
+@AutoRouterConfig(replaceInRouteName: 'Page,Route')      
+class AppRouter extends _$AppRouter {      
+    
+  @override      
+  List<AutoRoute> get routes => [      
+   /// 後ほどbuild_runnerで生成したルートを記載する。
+   ]    
+ }
+```
 @AutoRouterConfigに、replaceInRouteNameを指定することで、ジェネレート時に文字列を変換してくれる。
 ex.) HomePage -> HomeRoute
 
@@ -165,20 +181,6 @@ final bool deferredLoading;
 final List<String> generateForDir;
 ```
 ::::
-
-
-```dart :app_router.dart
-part 'app_router.gr.dart';            
-
-@AutoRouterConfig(replaceInRouteName: 'Page,Route')      
-class AppRouter extends _$AppRouter {      
-    
-  @override      
-  List<AutoRoute> get routes => [      
-   /// 後ほどbuild_runnerで生成したルートを記載する。
-   ]    
- }
-```
 &nbsp;
 
 ## Generating Routable pages
@@ -202,7 +204,7 @@ build_runnerを実行したら、お馴染みの.gr.dartファイルが生成さ
 
 
 :::message
-ドキュメントコピペだとエラーになるので注意。
+ドキュメント通りにコピペだとエラーになるので注意。
 :::
 
 
@@ -356,6 +358,8 @@ context.router.pushNamed('/books')
 ## Returning Results
 画面遷移の結果を返すには2パターンある。
 "pop completer"を使うか、オブジェクトを渡すのと同じようにコールバック関数を引数として渡すか。
+
+※このパートの詳細は一旦割愛（今後追記予定）
 &nbsp;
 
 <!-- 必要になったら追記する -->
@@ -367,7 +371,7 @@ context.router.pushNamed('/books')
 ここまでで、基本的な画面遷移はauto_routeで実装できた。
 ここからは、auto_routeでボトムナビゲージョンバーの実装を実施してみる。
 
-※ドキュメントでは、TabPageの名前はUsers,Posts,Settingsというページを作っているが、ここでは以下で実装してます。やってることは一緒です。
+※ドキュメントでは、TabPageの名前はUsers, Posts, Settingsというページを作っているが、ここでは以下で実装してます。やってることは一緒です。
 
 画面構成を以下とする。
 ```yaml
