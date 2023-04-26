@@ -478,7 +478,7 @@ class SettingPage extends StatelessWidget {
 > if you think the above setup is a bit messy you could use the shipped-in AutoTabsScaffold that makes things much cleaner.
 
 
-![](https://storage.googleapis.com/zenn-user-upload/88180ade89a4-20230424.gif =250x)
+![](https://storage.googleapis.com/zenn-user-upload/88180ade89a4-20230424.gif =200x)
 &nbsp;
 
 
@@ -487,24 +487,72 @@ class SettingPage extends StatelessWidget {
 
 ### AutoTabsRouter.tabBar
 ヘッダー部分にタブバーを表示させる。
-![](https://storage.googleapis.com/zenn-user-upload/107f666f60c4-20230424.png =250x)
+![](https://storage.googleapis.com/zenn-user-upload/107f666f60c4-20230424.png =200x)
+&nbsp;
+
+
+# Finding The Right Router
+parent()、root、innerRouterOf()等を使用して、
+ネストされたルーター情報をスコープ外からアクセスできる。
+
+:::message
+"context.router"と"tabsRouter"とでは、参照するルーターが違うこと注意。
+:::
+
+:::message
+ルーターの型の違いに注意。
+StackRouter
+TabsRouter
+RoutingController
+:::
+
+```dart :例1
+@RoutePage()
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoTabsScaffold(
+      routes: const [
+        HomeRoute(),
+        PostsRoute(),
+        SettingsAutoRouterRoute(),
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return BottomNavigationBar(
+          currentIndex: tabsRouter.activeIndex,
+          onTap: (int index) {
+            // 選択中じゃないタブをTapした場合
+            if (tabsRouter.activeIndex != index) {
+              tabsRouter.setActiveIndex(index);
+            }
+            // 選択中のタブをTapした場合
+            else {
+              // ネストされたルーターのスタック情報を破棄
+              tabsRouter
+                  .innerRouterOf<StackRouter>(tabsRouter.current.name)
+                  ?.popUntilRoot();
+            }
+```
+![](https://storage.googleapis.com/zenn-user-upload/035a26bf21f0-20230426.gif =200x)
 &nbsp;
 
 
 # その他
-## popUntil()
+### popUntil()
 ```
 context.router.popUntil((route) => route.settings.name == <指定のルート名>.name)
 ```
 指定のスタック層（指定のディレクトリ）まで戻れる。
-![](https://storage.googleapis.com/zenn-user-upload/8f8b8c6e614b-20230424.gif =250x)
+![](https://storage.googleapis.com/zenn-user-upload/8f8b8c6e614b-20230424.gif =200x)
 &nbsp;
 
 ```
 context.router.popUntil((route) => route.isFirst)
 ```
 全てのスタックを破棄できる。（ルートディレクトリまで戻れる）
-![](https://storage.googleapis.com/zenn-user-upload/dde986dfce6b-20230424.gif =250x)
+![](https://storage.googleapis.com/zenn-user-upload/dde986dfce6b-20230424.gif =200x)
 &nbsp;
 
 
