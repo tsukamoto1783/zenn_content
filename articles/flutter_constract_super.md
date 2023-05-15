@@ -1,9 +1,9 @@
 ---
 title: "【Flutter】コンストラクタとsuperについて"
-emoji: "🐈"
+emoji: "🏗️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Flutter, Dart, コンストラクタ, super]
-published: false
+topics: [Flutter, Dart, コンストラクタ, super, 継承]
+published: true
 ---
 
 誰もが目にするFlutterのお馴染みのこれ。
