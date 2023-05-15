@@ -2,7 +2,7 @@
 title: "【Flutter】コンストラクタとsuperについて"
 emoji: "🏗️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Flutter, Dart, コンストラクタ, super, 継承]
+topics: [Flutter, Dart, コンストラクタ, super, assert]
 published: true
 ---
 
@@ -374,10 +374,71 @@ class MyCustomText extends Text {
 }
 ```
 
+# assert
+assertはコンストラクタ内で使用でき、**デバック時にのみ有効**で、条件式がfalseの場合にエラーを発生させる。
+リリースビルドではassertは無視されるため、エラーハンドリングやバリデーションには使用できないこと注意。
 
+```dart
+import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'sample',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('sample app'),
+        ),
+        body: MyCustomContainer(
+          // 検証用にnullに変更
+          child: null,
+          // child: const MyCustomText('Hello, Flutter!'),
+        ),
+      ),
+    );
+  }
+}
+
+class MyCustomContainer extends Container {
+  MyCustomContainer({
+    super.key,
+    super.child,
+  })  
+  // assetを追加
+  : assert(child != null), // childがnullの場合は_AssertionErrorとなる
+        super(
+          margin: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
+          color: Colors.blue,
+        );
+}
+
+class MyCustomText extends Text {
+  const MyCustomText(
+    super.data, {
+    super.key,
+  }) : super(
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+            fontStyle: FontStyle.italic,
+            color: Colors.purple,
+          ),
+        );
+}
+
+```
 
 # 参考
 https://dart.dev/language/constructors#invoking-a-non-default-superclass-constructor
 
 https://codewithandrea.com/tips/dart-2.17-super-initializers/#automatic-migration-with-dart-fix
+
+https://dart.dev/language/error-handling#assert
