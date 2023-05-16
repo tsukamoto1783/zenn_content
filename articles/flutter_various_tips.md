@@ -2,16 +2,17 @@
 title: "【Flutter】理解できてそうで理解できてなかったFlutterのあれこれ"
 emoji: "🐦"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Flutter, Dart, late, static, super]
-published: false
+topics: [Flutter, Dart, late, implements, abstract]
+published: true
 ---
 <!-- staticの特徴に関して、良いコードを読んでから記載したい -->
 
-理解したつもりでなんとなく使用していたFlutterのあれこれを改めて調べてみた。
+理解したつもりでなんとなく使用していたFlutterのあれこれについて、改めて調べてみた。
 
 # super
 ボリュームが多いため、別記事に分けました。
-[【Flutter】コンストラクタとsuperについて](https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super)
+https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super
+
 
 &nbsp;
 # late
@@ -58,6 +59,12 @@ hot coffee
 https://dart.dev/null-safety/understanding-null-safety#late-variables
 
 
+&nbsp;
+# factory
+ボリュームが多いため、別記事に分けました。
+https://zenn.dev/tsukatsuka1783/articles/flutter_factory
+
+
 
 &nbsp;
 # static
@@ -67,9 +74,9 @@ https://dart.dev/null-safety/understanding-null-safety#late-variables
 また、インスタンスを生成した場合でも、staticなメソッドや変数は共有される。
 
 **【staticの注意点】**
-// 本読んでもうちょっと言葉をまとめたい。
-- テストが困難になる。
-- クラスのインスタンスを生成せずに呼び出せるため、依存関係がわかりにくくなる。
+基本的にはstaticメソッドや変数は使用しない方向で考えた方が良いかと。
+どこからでも呼び出せるため、意図しない値の変更や、依存関係が不明確になったりするため。
+使用する場合は、ログ出力メソッドなど、依存関係が無いorインスタンス化する必要が無いメソッドが有効か。
 
 **【staticメソッド例】**
 ```dart
@@ -128,7 +135,7 @@ https://dart.dev/language/classes
 親クラスのメソッドを上書きするためのアノテーション。
 @overrideをつける事で、親クラスのメソッドの振る舞いをカスタマイズしたり、特定の機能を追加したりすることができる。
 
-**【@override使用例】**
+**【@override例】**
 ```dart
 class Animal {
   void walk() {
@@ -204,6 +211,93 @@ void main() {
 https://dart.dev/language#interfaces-and-abstract-classes
 
 
+&nbsp;
+# implements
+特定のインターフェースを実装する際に使用される。
+
+&nbsp;
+**【注意点】**
+**「インターフェース」と「抽象クラス」との違い（概念の違い？）を知ることが一つポイント。**
+**ややこしいことに、Dartのコード上ではどちらも「abstract class」で表現されるが、目的や使用方法が違うことに注意。**
+
+
+&nbsp;
+**【インターフェース】**
+インターフェースは、クラスがどのようなメソッドやプロパティを提供するべきかを定義したもの。
+インターフェース定義内のメソッドやプロパティは、具体的な実装を一切含んでいない。（抽象メソッドなどの宣言のみで構成される）
+インターフェースを実装するクラスは、インターフェースで宣言されたメソッドやプロパティを全て使用する必要がある。
+```dart
+// インターフェース
+abstract class Animal {
+  // 具体的な実装を一切含まない（ここでは抽象メソッドのみの記載）
+  void walkingType();
+  void walk();
+  void sleep();
+}
+
+// インターフェースの実装
+class Dog implements Animal {
+  // インターフェースで定義されているメソッドを全て実装しないとErrorとなる。
+  @override
+  void walkingType() {
+    print('四足歩行');
+  }
+
+  @override
+  void walk() {
+    print('歩く');
+  }
+
+
+  @override
+  void sleep() {
+    print('Zzz...');
+  }
+
+  // インターフェースで定義されていないものは、自由に追加可能。
+  void makeSound() {
+    print('Woof!');
+  }
+}
+
+```
+
+&nbsp;
+**【抽象クラス】**
+抽象クラスは、上記見出しの「**abstract**」で説明した通り、実装のないメソッド（抽象メソッド）と、具体的なメソッド（具象メソッド）と混在して持つことができる。
+```dart
+// 抽象クラス
+abstract class Animal {
+  // 具象と抽象の両方のメソッドを持つことができる
+
+  // 抽象メソッド
+  void walkingType();
+
+  // 具象メソッド
+  void walk() {
+    print('動物は歩く');
+  }
+
+  // 具象メソッド
+  void sleep() {
+    print('動物は眠る');
+  }
+}
+
+// 継承
+class Dog extends Animal {
+  // 抽象クラスを継承した際は、抽象メソッドだけは必ずオーバーライドする必要あり。
+  @override
+  void walkingType() {
+    print('四足歩行');
+  }
+
+  // 抽象クラスで定義されていないものは、自由に追加可能。
+  void makeSound() {
+    print('Woof!');
+  }
+}
+```
 
 
 &nbsp;
