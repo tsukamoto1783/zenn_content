@@ -307,7 +307,71 @@ class Person {
   Person(this.name, this.age);
 }
 ```
+&nbsp;
+## 【補足】 late finalで初期化する場合との違いは？
+factoryコンストラクタで初期化する場合と、late finalで初期化する場合との違いはざっくりと以下。
 
+&nbsp;
+**【初期化タイミング】**
+factoryコンストラクタ： インスタンス生成時に初期化される。
+
+late final： 初期化はインスタンス生成時でなくても良くて、初めてlate final変数にアクセスした時に初期化される。
+
+&nbsp;
+**【コードの記載】**
+factoryコンストラクタ： コードは少し複雑になるが、より複雑な初期化ロジックを実装できたり、汎用性があるロジック（コンストラクタ）にできる。
+
+late final： コードは簡潔になるが、比較的単純な初期化処理がとなり、汎用性はあまり期待できない。
+
+&nbsp;
+以下にそれぞれのサンプルコードを記載する。
+（サンプルコードだと同じ結果となり、あまり違いはないように見えるが、上記の違いがあることを頭に入れておくと、いつか役にたつことがあるはず。。）
+
+```dart :factoryコンストラクタ例
+class Initialization {
+  final String initializedValue;
+
+  factory Initialization() {
+    final String currentDateTime = DateTime.now().toString();
+    final String value = '初期化された時間：$currentDateTime';
+
+    return Initialization._(value);
+  }
+
+  // 初期化処理
+  Initialization._(this.initializedValue) {
+    print('インスタンスが生成されました');
+  }
+}
+
+void main() {
+  Initialization instance = Initialization();
+  print(instance.initializedValue);
+}
+```
+```dart :late final例
+class Initialization {
+  late final String initializedValue;
+
+  Initialization() {
+    print('インスタンスが生成されました');
+
+    final String currentDateTime = DateTime.now().toString();
+
+    // 初期化処理
+    initializedValue = '初期化された時間：$currentDateTime';
+  }
+}
+
+void main() {
+  Initialization instance = Initialization();
+  print(instance.initializedValue);
+}
+```
+```
+インスタンスが生成されました
+初期化された時間：2023-05-10 18:44:51.807500
+```
 
 &nbsp;
 # おわり
