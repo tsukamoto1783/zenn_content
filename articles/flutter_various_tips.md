@@ -9,9 +9,15 @@ published: true
 
 理解したつもりでなんとなく使用していたFlutterのあれこれについて、改めて調べてみた。
 
+```txt :検証環境
+// dart --version
+Dart SDK version: 2.19.6 (stable) on "macos_arm64"
+```
+
+
 # super
 ボリュームが多いため、別記事に分けました。
-https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super
+[【Flutter】コンストラクタとsuperについて](https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super)
 
 
 &nbsp;
@@ -62,7 +68,7 @@ https://dart.dev/null-safety/understanding-null-safety#late-variables
 &nbsp;
 # factory
 ボリュームが多いため、別記事に分けました。
-https://zenn.dev/tsukatsuka1783/articles/flutter_factory
+[【Flutter】factory について](https://zenn.dev/tsukatsuka1783/articles/flutter_factory)
 
 
 

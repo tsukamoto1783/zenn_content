@@ -30,9 +30,15 @@ Another use case for factory constructors is initializing a final variable using
 - イニシャライザーリストでは処理できないロジックを使用してfinal変数を初期化する場合
 :::
 
+&nbsp;
 ※コンストラクタについては以下の記事参照
-https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super
+[【Flutter】コンストラクタとsuperについて](https://zenn.dev/tsukatsuka1783/articles/flutter_constract_super)
 
+&nbsp;
+```txt :検証環境
+// dart --version
+Dart SDK version: 2.19.6 (stable) on "macos_arm64"
+```
 
 &nbsp;
 # シングルトン
