@@ -1,5 +1,5 @@
 ---
-title: "【Flutter】理解できてそうで理解できてなかったFlutterのあれこれ"
+title: "【Flutter】理解できてそうで理解できてなかったFlutter(Dart)のあれこれ"
 emoji: "🐦"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, Dart, late, implements, abstract]
@@ -7,7 +7,7 @@ published: true
 ---
 <!-- staticの特徴に関して、良いコードを読んでから記載したい -->
 
-理解したつもりでなんとなく使用していたFlutterのあれこれについて、改めて調べてみた。
+理解したつもりでなんとなく使用していたFlutter(Dart)のあれこれについて、改めて調べてみた。
 
 ```txt :検証環境
 // dart --version
