@@ -72,7 +72,7 @@ Flutterで学習モデル扱うために、今回は[tflite_flutter](https://pub
 
 &nbsp;
 変更後のMNISTを実行するアプリはこんな感じ。
-※画像が28×28なので、少し小さいですが、、
+手描き数字の画像から、どの数字が記載されているかを判定できていることが確認できます。
 ![](https://storage.googleapis.com/zenn-user-upload/a7c5ea437354-20230528.gif =250x)
 
 
@@ -84,7 +84,7 @@ Flutterで学習モデル扱うために、今回は[tflite_flutter](https://pub
 
 &nbsp;
 # モデル差し替え時に詰まったポイント
-コードの変更量自体はしれてますが、差し替え時に詰まった点を記載します。
+コードの変更量自体は大したことないですが、差し替え時に詰まった点を記載します。
 
 ### 1.【インタプリタの初期化時のエラー】
 差し替えた.tflite形式のモデルを用いてインタプリタを初期化する際に、
@@ -106,7 +106,7 @@ See instructions: https://www.tensorflow.org/lite/guide/ops_select
 .pbファイルから.tfliteファイルに変換する際に、エラーに記載があるURL内のドキュメントの通りに変換すると解決しました。
 **※.pb形式以外のモデルから.tflite形式に変換する際は要注意。**
 
-```python
+```python: pythonでの変換コード
 converter = tf.lite.TFLiteConverter.from_saved_model(input_dir)
 converter.target_spec.supported_ops = [
   tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
@@ -161,7 +161,7 @@ Restored original execution plan after delegate application failure.
 &nbsp;
 モデル学習時の設定の問題でもあるかと思いますが、ここではGpuDelegateのオプション設定を無効にすることで解決。
 
-※GpuDelegateのオプション設定を無効にすると、推論処理がCPUで実行されるようになるので、推論速度は遅くなってしまうこと注意。
+※GpuDelegateのオプション設定を無効にすると、推論処理がCPUで実行されるようになるので、推論速度等が低下する恐れがあること注意。
 ※GpuDelegateのオプション設定を無効にすることが非推奨なのかどうか等は現状ドキュメント等に記載がない。この辺のオプション設定について今後明記されるかもしれないので要確認。
 
 ```diff dart
@@ -332,7 +332,7 @@ class _HomeState extends State<Home> {
 
 &nbsp;
 # ライブラリのアップデートに伴う変更点
-以前のバージョン[（tflite_flutter(0.9.0)）](https://pub.dev/packages/tflite_flutter/versions/0.9.0#important-initial-setup--add-dynamic-libraries-to-your-app)からの変更点をざっとまとめると、
+以前のバージョン（[tflite_flutter(0.9.0)](https://pub.dev/packages/tflite_flutter/versions/0.9.0#important-initial-setup--add-dynamic-libraries-to-your-app)）からの変更点をざっとまとめると、
 - 「ライブラリの導入が簡単に」
 以前はライブラリ導入する際に「.sh」を走らせたりしないといけなかったが、それらの導入処理が無くなりました。
 - 「FlutterやTensorFlowのバージョンアップに追従」
