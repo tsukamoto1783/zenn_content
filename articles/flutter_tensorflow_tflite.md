@@ -4,6 +4,7 @@ emoji: "🦾"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter,Dart,TensorFlow, TensorFlowLite, tflite]
 published: true
+publication_name: ncdc
 ---
 
 Flutterで学習モデルを用いた推論実行してみたい。
