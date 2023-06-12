@@ -5,7 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, flutterDeviceOrientation]
 published: true
 ---
-[flutter_device_orientation](https://pub.dev/packages/native_device_orientation)パッケージを使用すると、デバイスの向き検知することができます。
+[native_device_orientation](https://pub.dev/packages/native_device_orientation)パッケージを使用すると、デバイスの向き検知することができます。
 
 以下シンプルな動作サンプルです。
 デバイスの向きによって画面の文字が変わっているのが確認できます。
