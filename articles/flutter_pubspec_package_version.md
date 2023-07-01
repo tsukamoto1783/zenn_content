@@ -1,5 +1,5 @@
 ---
-title: "【Flutter】ライブラリ追加した際にpubspec.yamlに記載される「キャレット記号: ^」 の意味を知ろう"
+title: "【Flutter】ライブラリ追加時にpubspec.yamlに記載される「キャレット記号: ^」 の意味を知ろう"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, Dart, pubspec, SemanticVersioning, pub]
