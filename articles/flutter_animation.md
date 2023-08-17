@@ -340,7 +340,7 @@ flutter_hooksには`useAnimationController`というhooksが用意されてい�
 ```
 
 ただ、hooksで作成したコントローラーにリスナーを追加した場合は、リスナー破棄の処理が必要となる。（hooksが自動でリスナーまでは破棄してくれない。。）
-[ポイント1：useEffect](#ポイント1：useEffect)のコード部分参照。
+[上記ポイント1](#ポイント1：useeffect)のコード部分参照。
 
 -----------------
 <br>
