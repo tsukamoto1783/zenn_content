@@ -125,3 +125,14 @@ Copilot Chatにはデフォルトでいくつかのコマンドが用意され�
 ### Generate Tests （/tests）
 選択したコードの単体テストを生成する。
 ![](https://storage.googleapis.com/zenn-user-upload/d0fc34a49404-20230822.png)
+
+
+<br>
+<br>
+
+### ※備考
+[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)より以下抜粋。
+> GitHub Copilot Chat
+> 
+> Privacy
+> Your code is yours. We follow responsible practices in accordance with our Privacy Statement to ensure that your code snippets will not be used as suggested code for other users of GitHub Copilot.
