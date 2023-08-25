@@ -74,7 +74,7 @@ iosとandroidでデフォルトの挙動は以下。
 # どうやってカスタマイズする？
 アプリ全体で適用させたい場合は、MaterialAppのbuilderに`ScrollConfiguration`を設定する。
 
-```dart: main.dart
+```diff dart: main.dart
 void main() {
   runApp(const MyApp());
 }
@@ -85,13 +85,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // 以下追加 
-      builder: (context, child) {
-        return ScrollConfiguration(
-          behavior: const CustomScrollBehavior(),
-          child: child!,
-        );
-      },
++      builder: (context, child) {
++        return ScrollConfiguration(
++          behavior: const CustomScrollBehavior(),
++          child: child!,
++        );
++      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -100,17 +99,17 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-// ========================================
-class CustomScrollBehavior extends ScrollBehavior {
-  const CustomScrollBehavior();
-
-  // ここにカスタマイズしたい挙動を記述する
++ // ========================================
++ class CustomScrollBehavior extends ScrollBehavior {
++   const CustomScrollBehavior();
++ 
++   // ここにカスタマイズしたい挙動を記述する
 }
 ```
 
 各Widget個別で適用させたい場合は、それぞれでScrollConfigurationを設定する。
 
-```dart
+```diff dart
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,9 +117,8 @@ class CustomScrollBehavior extends ScrollBehavior {
         title: const Text('sample app'),
       ),
       body: Center(
-        // 以下追加
-        child: ScrollConfiguration(
-          behavior: const CustomScrollBehavior(),
++        child: ScrollConfiguration(
++          behavior: const CustomScrollBehavior(),
           child: ListView(
             children: [
                 // 省略
@@ -199,7 +197,6 @@ class CustomScrollBehavior extends ScrollBehavior {
 class CustomScrollBehavior extends ScrollBehavior {
   const CustomScrollBehavior();
 
-  // 以下追加
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) =>
       const BouncingScrollPhysics();
@@ -263,8 +260,12 @@ class CustomScrollBehavior extends ScrollBehavior {
       child: child,
     );
   }
+}
 
-  // ========== 波線効果を無効にする場合は以下 ==========
+// ========== 波線効果を無効にする場合は以下 ==========
+class CustomScrollBehavior extends ScrollBehavior {
+  const CustomScrollBehavior();
+
   @override
   Widget buildOverscrollIndicator(
       BuildContext context, Widget child, ScrollableDetails details) {
@@ -344,3 +345,44 @@ overrideしてカスタムすることはあまり無いと思うので、この
 ## velocityTrackerBuilder
 スクロール速度を検知して、速度によって動作を切り替るために使用。
 （深掘っていくと時間かかる部分なので記述割愛）
+
+<br>
+
+# おまけ：MaterialAppに複数のbuilderを設定したい場合
+アプリ全体で「textScaleFactorの固定」「スクロールエフェクトの無効化」を設定したい時など、個別でみると、それぞれの設定でbuilderを使用している。
+しかし、builderのプロパティは１つしか設定できないので、複数の設定をしたい場合はbuilderの第二引数の`child`をいい感じに使用すると複数の設定も可能。
+
+下記は`ScrollConfiguration`と`MediaQuery`を同時に設定してみた例。
+```diff dart: main.dart
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      builder: (context, child) {
+-        return ScrollConfiguration(
+-          behavior: const CustomScrollBehavior(),
+-          child: child!,
+-        );
++        child = ScrollConfiguration(
++          behavior: const CustomScrollBehavior(),
++          child: child!,
++        );
++
++        child = MediaQuery(
++          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
++          child: child,
++        );
++
++        return child;
+      },
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+```
