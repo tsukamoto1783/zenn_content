@@ -2,7 +2,7 @@
 title: "【codecov】codecov.ymlの設定についてのあれこれ"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [codecov, actions, github,ci,cd]
+topics: [codecov, GitHubActions, GitHub,CI,CD]
 published: true
 ---
 
