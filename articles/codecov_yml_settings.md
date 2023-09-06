@@ -61,6 +61,7 @@ github_checks:          # GitHubユーザー専用の設定。
 
 ### 注意事項
 - この記事ではGitHub Actionsを使用してcodecovを利用することを前提として記載する。
+actionsで設定できるパラメータについては[Codecov's Github Action v2/README](https://github.com/marketplace/actions/codecov#arguments)参照。
 他の方法でcodecovを利用する場合は、[「Codecov Uploader」](https://docs.codecov.com/docs/codecov-uploader)などを参照。
 - codocovはテスト自体は実行しない。
   actions内でテストを実行させて、その結果をcodocovに渡し、そのテスト結果に基づきcodecovは静的解析のためにカバレッジレポートやその他の重要なデータを収集する。
