@@ -3,7 +3,7 @@ title: "【codecov】codecov.ymlの設定についてのあれこれ"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [codecov, actions, github,ci,cd]
-published: false
+published: true
 ---
 
 ※この記事では、[codecovの公式ドキュメント](https://docs.codecov.io/docs/codecov-yaml)を参考に、codocov.ymlの設定に関わる部分をかいつまんで記載しております。
