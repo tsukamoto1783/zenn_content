@@ -4,6 +4,7 @@ emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [codecov, GitHubActions, GitHub,CI,CD]
 published: true
+publication_name: ncdc
 ---
 
 ※この記事では、[codecovの公式ドキュメント](https://docs.codecov.io/docs/codecov-yaml)を参考に、codocov.ymlの設定に関わる部分をかいつまんで記載しております。
@@ -105,21 +106,21 @@ coverage:
     # status blocks.
 ```
 
-### [range:](https://docs.codecov.com/docs/coverage-configuration#range)
+**[range:](https://docs.codecov.com/docs/coverage-configuration#range)**
 この値は、Codecovの可視色範囲をカスタマイズするために使用される。
 例えば、`60...80`と設定すると、カバレッジが50%未満の場合は赤色の背景が表示され、50%から75%の間は黄色のバーが表示され、カバレッジが75%に達すると色が緑に変わる。
 
-### [round:](https://docs.codecov.com/docs/coverage-configuration#rounding)
+**[round:](https://docs.codecov.com/docs/coverage-configuration#rounding)**
 カバレッジの小数点表示の設定。デフォルトだと切り捨て設定。
 以下の設定が可能。
 - **up**
 - **down**
 - **nearest**
 
-### [precision:](https://docs.codecov.com/docs/coverage-configuration#precision)
+**[precision:](https://docs.codecov.com/docs/coverage-configuration#precision)**
 カバレッジの小数点第何位まで表示するかの設定。桁数を0~5で設定できる。
 
-### [notify:](https://docs.codecov.com/docs/notifications)
+**[notify:](https://docs.codecov.com/docs/notifications)**
 カバレッジの結果をslack連携して通知したいなどの場合は、ここに設定していく。
 ```yaml
 coverage:
@@ -138,7 +139,7 @@ coverage:
     paths: "*/**/*"
 ```
 
-### [status:](https://docs.codecov.com/docs/commit-status)
+**[status:](https://docs.codecov.com/docs/commit-status)**
 特定のカバレッジ閾値を満たさないPRをブロックできる。
 ```yaml
 coverage:
@@ -201,7 +202,7 @@ comment:
   require_changes: false        # trueの場合、カバレッジが変更された場合のみコメントを投稿。
 ```
 
-### [layout:](https://docs.codecov.com/docs/pull-request-comments#layout)
+**[layout:](https://docs.codecov.com/docs/pull-request-comments#layout)**
 コメントレイアウトをカスタマイズできる。
 以下は、追加・選択できるコンポーネント。レイアウトからこれらのいずれかを省略すると、表示されなくなる。
 
@@ -214,14 +215,14 @@ comment:
 - **Feedback** : Codecov にフィードバックを提供するためのリンクを提供する。
 
 
-### [behavior:](https://docs.codecov.com/docs/pull-request-comments#behavior)
+**[behavior:](https://docs.codecov.com/docs/pull-request-comments#behavior)**
 Codecovがプルリクエストへのコメント投稿方法を選択。
 
 - **default**: 存在すれば更新。そうでなければ新規投稿。
 - **once**: 存在すれば更新。そうでなければ新規投稿。削除されたらスキップ。
 - **new**: 古いものを削除し、新しいものを投稿。
 
-### [require_changes:](https://docs.codecov.com/docs/pull-request-comments#requiring-changes)
+**[require_changes:](https://docs.codecov.com/docs/pull-request-comments#requiring-changes)**
 カバレッジに変更が検出された場合に、コメントが投稿されるタイミングを変更する。
 
 trueにすると、コメントはカバレッジが変更されたときにのみ投稿されるようになる。さらに、すでにコメントが存在し、新しいコミットによって全体のカバレッジに変更がなかった場合、そのコメントは削除される。
@@ -334,7 +335,7 @@ flags:
 
 
 
-### [Carryforward Flags](https://docs.codecov.com/docs/carryforward-flags)
+**[Carryforward Flags](https://docs.codecov.com/docs/carryforward-flags)**
 各コミットでリポジトリのコードすべてをテストしない場合、Codecov では`Carryforward Flags`と呼ばれる機能を使用して、実行されたテストのカバレッジのみを更新することができる。
 
 
