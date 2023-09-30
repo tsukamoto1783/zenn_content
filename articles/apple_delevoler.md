@@ -7,7 +7,7 @@ published: true
 ---
 何度も証明書周りの理解がこんがらがって何度もつまづいたので、改めて**ざっくり噛み砕いて**整理してみました。
 
-以下、基本的にはapple developerの各種項目を基に順に見ていきます。
+以下、基本的にはApple Developerの各種項目を基に順に見ていきます。
 ![](https://storage.googleapis.com/zenn-user-upload/15e115b55446-20230930.png)
 
 <br>
@@ -34,9 +34,9 @@ published: true
 <br>
 
 ## 2.Certificate（証明書）
-**「appleからアプリ開発許可されたという証明書」**
+**「Appleからアプリ開発許可されたという証明書」**
 
-CSRを用いて、apple developerに申請することで発行される。
+CSRを用いて、Apple Developerに申請することで発行される。
 この発行された証明書をDLすることでキーチェーンに保存され、先ほどの※**CSRと紐づき開発（実機build）が可能に。**
 
 **ローカルPC情報が記載されたCSRと証明書はセットで初めて開発（実機build）が可能になるイメージ。**
@@ -50,7 +50,7 @@ Certificate（証明書）には、主に以下2種類ある。
 - Development :開発用
 - Distribution :配信用
 
-どちらもappleからの開発許可証的な役割なので、仕組み基本は同じだが、**Distributionの証明書はチームで2つ（3つ?）までしか作成できないことを注意。**
+どちらもAppleからの開発許可証的な役割なので、仕組み基本は同じだが、**Distributionの証明書はチームで2つ（3つ?）までしか作成できないことを注意。**
 
 一般的な運用としては、
 組織の開発者各々がDevelopmentの証明書を作成して、Distributionの証明書は組織で管理共有。
@@ -84,11 +84,11 @@ Certificate（証明書）だけを共有しても、共有した先のPCにCSR�
 **Identifier ≒ App ID**
 他の記事ではApp IDと記載されていることが多い。
 
-実際にapple developerのIdentifiersで作成ボタンを押すと、すぐにApp IDの作成をすることになるので、実質は同じことかと。
+実際にApple DeveloperのIdentifiersで作成ボタンを押すと、すぐにApp IDの作成をすることになるので、実質は同じことかと。
 
-apple developerのIdentifiersでは主に以下を指定して、App IDを作成する。
+Apple DeveloperのIdentifiersでは主に以下を指定して、App IDを作成する。
 - Bundle ID：アプリを識別する文字列
-- App ID Prefix：TeamIDが自動で割り振られる
+- App ID Prefix：Team IDが自動で割り振られる
 - Capabilities or AppServices: 使用する機能を選択する（push通知とか）
 
 **Identifier（≒App ID）には開発用や配信用などの種類はなく、統一で1つでOK。**
@@ -105,7 +105,7 @@ apple developerのIdentifiersでは主に以下を指定して、App IDを作成
 ## 6. Provisioning Profile
 **「アプリを実機で動かすためや、App Storeに公開するための許可証」**
 
-apple developerの項目では**Profile**と記載されている。
+Apple Developerの項目では**Profile**と記載されている。
 
 上記で作成した項目を一つにまとめる、最終結合するイメージ。
 - Certificate（証明書）
@@ -133,8 +133,8 @@ apple developerの項目では**Profile**と記載されている。
 
 このKeysは開発に必須では無いので、Provisioning Profileに組み込むとかは無い。
 
-主には他のミドルウェアにkeyを渡して、iOSの機能を使用するイメージ。
-よく使用されるのkeyの例として、APNs（push通知）とかだと、keyをFirebaseに渡してFirebaseからAPNsを使用するイメージ。
+主には他のミドルウェアにKeyを渡して、iOSの機能を使用するイメージ。
+よく使用されるのKeyの例として、APNs（push通知）とかだと、KeyをFirebaseに渡してFirebaseからAPNsを使用するイメージ。
 
 拡張子は`.p8`
 
@@ -142,7 +142,7 @@ apple developerの項目では**Profile**と記載されている。
 
 -----
 ### おわり
-ざっくりと簡単な言葉に置き換えて記載しているので、認識が違っている箇所があればさらっとコメント頂けると幸いです。
+ざっくりと簡単な言葉に置き換えて記載しているので、認識が違っている箇所があればそっとコメント頂けると幸いです。
 
 <br>
 
