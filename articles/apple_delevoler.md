@@ -14,12 +14,12 @@ published: true
 <br>
 
 ## 全体の大まかな関係性
-![](https://storage.googleapis.com/zenn-user-upload/b03df7196b00-20230930.png)
+![](https://storage.googleapis.com/zenn-user-upload/f65e29cc8e4e-20230930.png)
 
 <br>
 
 ## 1.CSR（Cert Signing Request：証明書署名要求）
-**「appleからアプリ開発許可書（証明書）を発行してもらうための申込書」**
+**「Appleからアプリ開発許可書（証明書）を発行してもらうための申込書」**
 ![](https://storage.googleapis.com/zenn-user-upload/b211bade75c1-20230930.png =x200)
 
 ローカルPCのキーチェーンにて作成できる。
