@@ -5,7 +5,8 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, ios, apple, 証明書]
 published: true
 ---
-何度も証明書周りの理解がこんがらがって何度もつまづいたので、改めて**ざっくり噛み砕いて**整理してみました。
+何度も証明書周りの理解がこんがらがり、つまづいていたので、改めて**ざっくり噛み砕いて**整理してみました。
+ここでは全体の流れや、それぞれの項目の役割のイメージが掴めるように記載しています。
 
 以下、基本的にはApple Developerの各種項目を基に順に見ていきます。
 ![](https://storage.googleapis.com/zenn-user-upload/15e115b55446-20230930.png)
@@ -19,6 +20,7 @@ published: true
 
 ## 1.CSR（Cert Signing Request：証明書署名要求）
 **「appleからアプリ開発許可書（証明書）を発行してもらうための申込書」**
+![](https://storage.googleapis.com/zenn-user-upload/b211bade75c1-20230930.png =x200)
 
 ローカルPCのキーチェーンにて作成できる。
 ローカルPC情報（個人特定情報）を申込書に記載するイメージ。
@@ -35,6 +37,7 @@ published: true
 
 ## 2.Certificate（証明書）
 **「Appleからアプリ開発許可されたという証明書」**
+![](https://storage.googleapis.com/zenn-user-upload/c55be2463823-20230930.png =x200)
 
 CSRを用いて、Apple Developerに申請することで発行される。
 この発行された証明書をDLすることでキーチェーンに保存され、先ほどの※**CSRと紐づき開発（実機build）が可能に。**
@@ -63,6 +66,7 @@ CI/CDの関係でDevelopmentの証明書も組織で管理共有するパター�
 
 ## 3. .p12ファイル
 **「PC間で共有が可能なCertificate（証明書）≒Certificate（証明書）の完成版」**
+![](https://storage.googleapis.com/zenn-user-upload/ebfd64921228-20230930.png =x200)
 
 Distributionの証明書を組織で共有する例を挙げると、
 Certificate（証明書）だけを共有しても、共有した先のPCにCSR（秘密鍵）が無いと情報が一致せず開発ができない。
@@ -80,6 +84,7 @@ Certificate（証明書）だけを共有しても、共有した先のPCにCSR�
 
 ## 4.Identifier（識別子）
 **「「このアプリは誰が作って、こんな機能を使ってますよ。」という名札」**
+![](https://storage.googleapis.com/zenn-user-upload/05aa2787357b-20230930.png =x200)
 
 **Identifier ≒ App ID**
 他の記事ではApp IDと記載されていることが多い。
@@ -98,12 +103,15 @@ Apple DeveloperのIdentifiersでは主に以下を指定して、App IDを作成
 
 ## 5. Device
 **「開発に使用する端末情報」**
+![](https://storage.googleapis.com/zenn-user-upload/2c4c6fdf4882-20230930.png =x200)
+
 開発用に実機ビルドをする端末や、AdHoc配信でアプリインストールする端末は、端末情報の登録が必要。
 
 <br>
 
 ## 6. Provisioning Profile
 **「アプリを実機で動かすためや、App Storeに公開するための許可証」**
+![](https://storage.googleapis.com/zenn-user-upload/be545b0556f4-20230930.png =x200)
 
 Apple Developerの項目では**Profile**と記載されている。
 
@@ -130,6 +138,7 @@ Apple Developerの項目では**Profile**と記載されている。
 
 ## 7. Keys（.p8ファイル）
 **「特定の機能を使用するための鍵」**
+![](https://storage.googleapis.com/zenn-user-upload/c2616c51abe4-20230930.png =x200)
 
 このKeysは開発に必須では無いので、Provisioning Profileに組み込むとかは無い。
 
