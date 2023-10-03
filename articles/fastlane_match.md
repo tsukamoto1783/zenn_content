@@ -243,5 +243,5 @@ Creating new provisioning profile for '<Bundle ID>' with name 'match Development
 
 ::::details 参考
 https://zenn.dev/tsukatsuka1783/articles/apple_delevoler
-https://qiita.com/kotarella1110/items/840af2cf80aaea1fb035#%E5%8F%96%E5%BE%97-1
+https://qiita.com/kotarella1110/items/840af2cf80aaea1fb035
 ::::
