@@ -4,6 +4,7 @@ emoji: "🍎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, ios, apple, 証明書]
 published: true
+publication_name: ncdc
 ---
 何度も証明書周りの理解がこんがらがり、つまづいていたので、改めて**ざっくり噛み砕いて**整理してみました。
 ここでは全体の流れや、それぞれの項目の役割のイメージが掴めるように記載しています。
