@@ -8,7 +8,7 @@ published: true
 以下の話題になっていたCodeRabbitを実際に触ってみようとして詰まったポイントを記載。
 https://zenn.dev/minedia/articles/7928ef7545b393
 
-# 「CodeRabbit」と「ai-pr-reviewer」とを混同しない
+# 1.「CodeRabbit」と「ai-pr-reviewer」とを混同しない
 [CodeRabbit](https://coderabbit.ai/)は、GitHub Appとして動作するサービス。
 
 [ai-pr-reviewer](https://github.com/marketplace/actions/ai-based-pr-reviewer-summarizer-with-chat-capabilities)は、CodeRabbitが提供するGitHub Actions。
@@ -17,6 +17,8 @@ https://zenn.dev/minedia/articles/7928ef7545b393
 
 このサービスの違いを混同していたため、導入時にやや詰まった。
 （CodeRabbitを使用するためにymlファイルの設定が必要だと勝手に思い込んでいた（二重設定してしまっていた）、、）
+
+<br>
 
 ※ai-pr-reviewerについては、こちらの記事もすごく参考になりました。
 https://zenn.dev/egstock_inc/articles/86c07c9fe3bddf
@@ -36,7 +38,7 @@ Start your journey with CodeRabbit by registering via your GitHub or GitLab acco
 
 <br>
 
-# OpenAI APIの新規登録した際に、rate limitの上限値が課金してるのに上がらない
+# 2.OpenAI APIの新規登録した際に、rate limitの上限値が課金してるのに上がらない
 「ai-pr-reviewer」を動かすためには、OpenAIのAPI Keyが必要になる。
 今までOpenAIのAPI登録（課金）はしていなかったので、記事記載の通りにAPI Keyを取得する。
 
@@ -44,7 +46,7 @@ Start your journey with CodeRabbit by registering via your GitHub or GitLab acco
 
 **が、記事に記載のあるように綺麗にActionsが完了しない。**
 
-エラーで変更ファイルが読み取れず、レビュー対象から外されてしまうファイルがちらほら発生してしまっている。
+エラーで変更ファイルが読み取れず、レビューされないファイルがちらほら発生してしまっている。
 
 ![](https://storage.googleapis.com/zenn-user-upload/babc381f4d52-20231007.png =300x)
 *Files not summarized(reviewed) due to errors が発生*
