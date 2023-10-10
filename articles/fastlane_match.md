@@ -59,19 +59,18 @@ fastlane matchの特徴についてより詳しく知るには[fastlane docs](ht
 <br>
 
 1. fastlaneをインストールする。
-   インストールするツールはなんでもいいですが、ここではgemを使用しています。
+   - インストールするツールはなんでもいいですが、ここではgemを使用しています。
     `sudo gem install fastlane`
 
     
-    [参考：fastlane docs/Getting started with fastlane for iOS](https://docs.fastlane.tools/getting-started/ios/setup/)
-    [参考：Flutter docs/fastlane](https://docs.flutter.dev/deployment/cd#fastlane)
+      - [参考：fastlane docs/Getting started with fastlane for iOS](https://docs.fastlane.tools/getting-started/ios/setup/)
+      - [参考：Flutter docs/fastlane](https://docs.flutter.dev/deployment/cd#fastlane)
 
 2. 一元管理用の空のリポジトリを用意する。
-   シンプルにGitHubからリポジトリを作成するだけでOK。
+   - シンプルにGitHubからリポジトリを作成するだけでOK。
 
 3. 管理したいプロジェクトのディレクトリで初期化処理。
-    `[project]/ios` ディレクトリで、`fastlane init` を実行。
-
+  `[project]/ios` ディレクトリで、`fastlane init` を実行。
     ↓目的に合わせて2か3を選択。
     ![](https://storage.googleapis.com/zenn-user-upload/f29235c00993-20231003.png)
 
@@ -99,43 +98,41 @@ fastlane matchの特徴についてより詳しく知るには[fastlane docs](ht
     - itc_team_id
     - team_id
 
-4. 管理したいプロジェクトのIdentifier（App ID）を生成する。
+1. 管理したいプロジェクトのIdentifier（App ID）を生成する。
    以下の方法などで生成する。
    - `fastlane produce`を使用してIdentifierを生成する。
   produceについての詳細は以下の[「fastlane-produceの使い方」](#fastlane-produceの使い方)参照
    - 従来通り、Apple DeveloperコンソールからIdentifierを生成する。
 
 1. 生成されたfastlaneディレクトリへ移動して、`fastlane match init`を実行する。
-    実行すると管理用リポジトリのURLを聞かれるので、入力する。
-    ![](https://storage.googleapis.com/zenn-user-upload/946d3e0e2d36-20231003.png)
+    - 実行すると管理用リポジトリのURLを聞かれるので、入力する。
+  その後、`[project]/ios/fastlane/Matchfile`が生成される。
 
-    その後、[project]/ios/fastlane/`Matchfile`が生成される。
-
-
-    Matchfileに記載のあるURLに間違いないか念のため確認する。
+    - Matchfileに記載のあるURLに間違いないか念のため確認する。
     `git_url("リポジトリURL")`
 
+    ![](https://storage.googleapis.com/zenn-user-upload/946d3e0e2d36-20231003.png)
 
-2. fastlaneディレクトリで、`fastlane match ××××`を実行する。
-    ※ここでは管理元のリポジトリでCertificate（証明書）の保持はまだしていない（空）と想定して記載する。
-
-    `××××`は、`development` or `appstore` or `adhoc` or `enterprise` のいずれかを指定する。
-
-    これで証明書とプロビジョニングプロファイルが自動生成され、生成されたファイルは暗号化されて管理用リポジトリに保存される。
-
-    初回matchに自動生成されたCertificate（証明書）は、一度登録されたら有効期限が切れるとか意外は基本的には再生成されない。
+1. fastlaneディレクトリで、`fastlane match ××××`を実行する。
+    **※以下、管理元のリポジトリでCertificate（証明書）の保持はまだしていない（空）と想定して記載する。**
+    - `××××`は、`development` or `appstore` or `adhoc` or `enterprise` のいずれかを指定する。
+    - これで証明書とプロビジョニングプロファイルが自動生成され、生成されたファイルは暗号化されて管理用リポジトリに保存される。
+    - 初回matchに自動生成されたCertificate（証明書）は、一度登録されたら有効期限が切れるとか意外は基本的には再生成されない。
     この管理されたCertificate（証明書）を元に各プロジェクトのProvisioning Profilesが生成される。
 
 <br>
 
 ## 導入後の使用方法
-新規プロジェクト参画者を想定して以下記載する。
+新規プロジェクト参画者（開発メンバー）を想定して以下記載する。
 1. プロジェクトのリポジトリをCloneする。
-2. [project_path]/fastlaneディレクトリ配下で、`fastlane match ××××`を実行する。
-   ※実際は、`fastlane match ×××× --readonly --force_for_new_devices`とかオプションをつけて実行することにはなるはず。
+2. [project_path]/fastlaneディレクトリ配下で、`fastlane match ×××× --readonly`を実行する。
 3. 実行後、ローカルにp12とprofileがDLされる。
 
 以上のみで、すぐに開発が開始できる。
+
+【備考】
+`Appfile`で指定のあるApple IDのパスワードを知らない場合や、チーム所属でないApple IDが指定された場合などは、開発者は、`--readonly`しか実行することができす、証明書等の更新はできない。
+≒プロジェクトやチームの管理者のみが証明書の更新は可能とすることができる。
 
 <br>
 

@@ -9,9 +9,9 @@ published: true
 https://zenn.dev/minedia/articles/7928ef7545b393
 
 # 1.「CodeRabbit」と「ai-pr-reviewer」とを混同しない
-[CodeRabbit](https://coderabbit.ai/)は、GitHub Appとして動作するサービス。
+[CodeRabbit](https://coderabbit.ai/)は、GitHub Appとして動作するサービス。「CodeRabbitのPro版」
 
-[ai-pr-reviewer](https://github.com/marketplace/actions/ai-based-pr-reviewer-summarizer-with-chat-capabilities)は、CodeRabbitが提供するGitHub Actions。
+[ai-pr-reviewer](https://github.com/marketplace/actions/ai-based-pr-reviewer-summarizer-with-chat-capabilities)は、CodeRabbitが提供するGitHub Actions。「CodeRabbitのOSS版」
 
 基本の機能としてはどちらも同じで、PRのレビューなどをしてくれるもの。
 
@@ -89,6 +89,13 @@ https://community.openai.com/t/api-request-limit-increase/409745
 
 ::: message 
 TODO: 進展があり次第記事更新
+
+追記
+rate limitの上限を引き上げたい場合は、Formから申請してください。的な回答が返ってきた。
+→このrate limitが課金後でもデフォルト値だったっぽい？？
+→ちょっと試しで使用したかっただけなので、上限引き上げの申請まではしないが（正当な必要性がないと申請は認めない的な記載があるため）、真相が気にする。。
+
+
 :::
 
 <!--  -->
