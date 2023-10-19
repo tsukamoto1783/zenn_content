@@ -8,17 +8,14 @@ publication_name: ncdc
 ---
 [fastlane](https://fastlane.tools)
 
-この記事では、**fastlane match**を使用して、iOSのCertificates（証明書）とProvisioning Profilesを一元管理/自動化する方法を紹介します。
+この記事では、**fastlane match**を使用して、iOSのCertificates（証明書）とProvisioning Profilesを一元管理/自動化する基本的な方法を記載します。
 
 この記事では、fastlane を使用してのデプロイプロセスの自動化までは実施しません。
 ↑ここは別途記事にできたらと思います。
 
-複数のプロジェクトが既に存在する組織に対して、デプロイ等の自動化まで一度に全て構築するのは大変だと感じます。
-まずは煩雑になりがちなCertificate（証明書）周りの一元管理/自動化が構築されるだけで十分fastlaneの恩恵を感じれるかと思っています。
+まずは煩雑になりがちなCertificate（証明書）とProvisioning Profilesの一元管理/自動化が構築されるだけで十分fastlaneの恩恵を感じれるかと思っています。
 
-Certificate（証明書）周りの一元管理だけなら最低限のコマンドだけで構築できるので、fastlaneを導入する最初のステップとしては良いのではと思っているポイントです。
-
-今回の**fastlane match**を通じてfastlaneの全体感を掴めてきたなら、デプロイ周りの自動化も検討してみてください。
+基本的な**fastlane match**を通じてfastlaneの全体感を掴めてきたなら、デプロイ周りの自動化も検討してみてください。
 
 【備考】
 証明書周りの知識についての整理は、以下参照ください。
@@ -56,20 +53,38 @@ fastlane matchの特徴についてより詳しく知るには[fastlane docs](ht
 ※AWSやAzureなどで管理することも可能ですが、今回はGitHubを使用して管理する前提で説明します。
 ※fastlaneに関するフォルダ構成については、チームの方針によって適宜変更してください。ここでは一例としてFlutterプロジェクトのフォルダ構成を想定しています。
 
+最終的なフォルダ構成例は以下。
+  
+```yaml
+project
+  ├─ios
+    └─ fastlane
+        ├─.env
+        ├─ Appfile   ≒ fastlane 設定ファイル
+        ├─ Fastfile  ≒ fastlane 実行ファイル
+        └─ Matchfile ≒ fastlane match 設定ファイル
+```
+
 <br>
 
-1. fastlaneをインストールする。
-   - インストールするツールはなんでもいいですが、ここではgemを使用しています。
-    `sudo gem install fastlane`
+1. 共通アカウントの作成
+   共有のApple IDを作成。
+   
+<br>
 
-    
+2. fastlaneをインストール
+    `sudo gem install fastlane`    
       - [参考：fastlane docs/Getting started with fastlane for iOS](https://docs.fastlane.tools/getting-started/ios/setup/)
       - [参考：Flutter docs/fastlane](https://docs.flutter.dev/deployment/cd#fastlane)
 
-2. 一元管理用の空のリポジトリを用意する。
-   - シンプルにGitHubからリポジトリを作成するだけでOK。
+<br>
 
-3. 管理したいプロジェクトのディレクトリで初期化処理。
+3. 一元管理用の空のリポジトリを作成
+  シンプルにGitHubからリポジトリを作成するだけでOK。
+
+<br>
+
+4. 管理したいプロジェクトのディレクトリで初期化処理
   `[project]/ios` ディレクトリで、`fastlane init` を実行。
     ↓目的に合わせて2か3を選択。
     ![](https://storage.googleapis.com/zenn-user-upload/f29235c00993-20231003.png)
@@ -80,40 +95,110 @@ fastlane matchの特徴についてより詳しく知るには[fastlane docs](ht
     ↓Apple IDを入力。
     ![](https://storage.googleapis.com/zenn-user-upload/09a482c36d0e-20231003.png)
 
-    全て完了すると、以下のフォルダが生成される。
+    完了すると、以下のフォルダが生成される。
     ```yaml
     project
       ├─ios
-        ├─ Gemfile
-        ├─ Gemfile.lock
         └─ fastlane
-            ├─ Appfile   ≒ fastlane設定ファイル
-            └─ Fastfile  ≒ fastlane実行ファイル
+            ├─ Appfile 
+            └─ Fastfile
     ```
 
-    Appfilesを開くと以下の情報が先ほどの`fastlane init`時の入力通り記載されている。
-    この値が一致していることを再度確認する。
-    - app_identifier
-    - apple_id
-    - itc_team_id
-    - team_id
+<br>
 
-1. 管理したいプロジェクトのIdentifier（App ID）を生成する。
+5. 管理したいプロジェクトのIdentifier（App ID）を作成
    以下の方法などで生成する。
    - `fastlane produce`を使用してIdentifierを生成する。
-  produceについての詳細は以下の[「fastlane-produceの使い方」](#fastlane-produceの使い方)参照
+      - produceについての詳細は以下の[「fastlane-produceの使い方」](#fastlane-produceの使い方)参照
    - 従来通り、Apple DeveloperコンソールからIdentifierを生成する。
 
-1. 生成されたfastlaneディレクトリへ移動して、`fastlane match init`を実行する。
-    - 実行すると管理用リポジトリのURLを聞かれるので、入力する。
-  その後、`[project]/ios/fastlane/Matchfile`が生成される。
+<br>
 
-    - Matchfileに記載のあるURLに間違いないか念のため確認する。
-    `git_url("リポジトリURL")`
+6. Fastfileに実行処理を記載
+   以下は一例。
+   ```ruby:Fastfile
+    # matchの他のパラメータについてはDocs参照。https://docs.fastlane.tools/actions/match/
+    # ××××：development or appstore or adhoc
+    
+    default_platform(:ios)
+    # 管理者用
+    platform :ios do
+      desc "××××: Fetch Certificate and Profile"
+      lane :××××_fetch_cert_and_profile do
+        api_key = app_store_connect_api_key(
+          key_id: ENV["KEY_ID"],
+          issuer_id: ENV["ISSUER_ID"],
+          key_filepath: ENV["KEY_FILEPATH"],
+          duration: 1200,
+          in_house: false
+        )
 
+        match(
+          api_key: api_key,
+          type: "××××",
+          app_identifier: ["<app_identifier>"],
+          force_for_new_devices: true
+        )
+      end
+    end
+
+    # 開発者用 
+    platform :ios do
+      desc "readonly ××××: Fetch Certificate and Profiles"
+      lane :readonly_××××_fetch_cert_and_profile do
+        match(
+          type: "××××",
+          app_identifier: ["<app_identifier>"],
+          readonly: true,
+          force_for_new_devices: true
+        )
+      end
+    end
+   ```
+
+<br>
+
+7. App Store Connect API Key 作成
+   API Keyは作成後一度しかDLできないので注意。
+   ![](https://storage.googleapis.com/zenn-user-upload/9d2e113ff28a-20231019.png)
+   
+<br>
+
+8. .envファイル作成
+   作成したAPI Keyの情報を記載。
+   ```env:.env
+    # Fastfile
+    KEY_ID = "<App Store Connect：キーID>"
+    ISSUER_ID = "<App Store Connect: Issuer ID>"
+    KEY_FILEPATH = "<p8ファイルの格納Path>"
+
+    # 他にもAppfileの内容など、各自必要であれば設定する。
+   ```
+<br>
+
+9. ignore設定
+    .envファイルをgitignoreに追加する。
+    ```gitignore:.gitignore
+    .env*
+    ```
+
+<br>
+
+10. 生成されたfastlaneディレクトリへ移動して、`fastlane match init`を実行
+  実行すると管理用リポジトリのURLを聞かれるので入力する。
+  実行後、`[project]/ios/fastlane/Matchfile`が生成される。
     ![](https://storage.googleapis.com/zenn-user-upload/946d3e0e2d36-20231003.png)
 
-1. fastlaneディレクトリで、`fastlane match ××××`を実行する。
+<br>
+
+11. fastlaneディレクトリで以下実行
+    ```bash
+    fastlane <platform名> <lane名>
+
+    例) fastlane ios ××××_fetch_cert_and_profile
+    
+    ※  もしくは、`fastlen` コマンドのみでも可。
+    ```
     **※以下、管理元のリポジトリでCertificate（証明書）の保持はまだしていない（空）と想定して記載する。**
     - `××××`は、`development` or `appstore` or `adhoc` or `enterprise` のいずれかを指定する。
     - これで証明書とプロビジョニングプロファイルが自動生成され、生成されたファイルは暗号化されて管理用リポジトリに保存される。
@@ -124,19 +209,45 @@ fastlane matchの特徴についてより詳しく知るには[fastlane docs](ht
 
 ## 導入後の使用方法
 新規プロジェクト参画者（開発メンバー）を想定して以下記載する。
-1. プロジェクトのリポジトリをCloneする。
-2. [project_path]/fastlaneディレクトリ配下で、`fastlane match ×××× --readonly`を実行する。
-3. 実行後、ローカルにp12とprofileがDLされる。
+1. fastlaneをインストールする
+2. fastlaneディレクトリ配下で、`fastlane`コマンドを実行する。
+   上記で記述したFastfileの実行例でいくと、`readonly_××××_fetch_cert_and_profile`を実行。
+3. 実行後、ローカルにp12とProfileがDLされる。
 
 以上のみで、すぐに開発が開始できる。
 
 【備考】
-`Appfile`で指定のあるApple IDのパスワードを知らない場合や、チーム所属でないApple IDが指定された場合などは、開発者は、`--readonly`しか実行することができす、証明書等の更新はできない。
-≒プロジェクトやチームの管理者のみが証明書の更新は可能とすることができる。
+`readonly`でないlaneを実行するにはAPI Keyの情報が必要。
+≒ **権限のある人（PJ管理者とか）だけが証明書の更新が可能とすることができる。**
 
 <br>
 
 ## その他ポイント
+### fastlane matchをコマンド実行するのと、Fastfile内でAPI Keyを指定して実行する違いは？
+- コマンド実行
+  - Appfileに記載のApple IDで実行/作成される。
+  - 証明書やProfileの作成に**2ファクタ認証が発生する。**
+  
+- Fastfile内でAPI Keyを指定しての実行
+  - 指定したAPI Keyで実行/作成される。（作成者もAPI Key: ...となる）
+  - 環境変数の設定等は必要。
+  - 証明書やProfileの作成に**2ファクタ認証が不要。**
+![](https://storage.googleapis.com/zenn-user-upload/eec88d5f3b45-20231019.png =600x)
+
+<br>
+
+ドキュメント見る限りでは、API Keyを指定して実行する方法を推奨している。
+
+> fastlane has historically used Apple IDs with username and password to authenticate using a cookie-based web session. fastlane will continue using this same cookie-based web session to authenticate with an unofficial version of the App Store Connect API.
+> 
+> However, it is recommended to use the API Key authentication when you are able to. The benefits include:
+> - No 2FA needed
+> - Better performance
+> - Documented API
+> - Increased reliability
+
+<br>
+
 ### fastlane produceの使い方
 produceコマンドを使用すると、「Apple DeveloperのIdentifier」と、「App Store Connectにアプリ（提出準備中）」が作成できる。
 `fastlane produce`を実行すると、app_nameを聞かれるので回答するだけで完了。これで上記二つが自動生成される。
@@ -174,7 +285,7 @@ Apple DeveloperのIdentifierだけ生成したい場合は、`--skip_itc`オプ�
 <br>
 
 ### 証明書の期限が切れた場合はどうする？
-`nuke`コマンドで削除してください。
+`nuke`コマンドで削除できます。
   
 `nuke`コマンドで Certificate（証明書）を削除する場合は、その証明書に付随するProfileも全て削除されるので便利。
 ただ、割と破壊的なコマンドなので、**実行する際は注意が必要。**
@@ -219,9 +330,10 @@ Creating new provisioning profile for '<Bundle ID>' with name 'match Development
 <br>
 
 ### Deviceを追加/削除したが更新される？
-通常の`fastlane match ×××××`だけだと更新されない。オプションで`--force_for_new_devices`を指定するとデバイス情報の変更を検知して更新（再生成）してくれる。
+オプションを指定しないとDevice情報は更新されない。
+オプションで`force_for_new_devices`を指定するとデバイス情報の変更を検知してProfileを更新（再生成）してくれる。
 
-デフォルトで常にforce_for_new_devicesオプションは指定する習慣をつけていた方が確実そう。
+常にforce_for_new_devicesオプションは指定していた方が確実かと。
 
 ※`force`オプションと`force_for_new_devices`オプションでは動作が異なること注意。
 
@@ -232,13 +344,12 @@ Creating new provisioning profile for '<Bundle ID>' with name 'match Development
 
 ## おわり
 ここでは基本的な使用方法を主に記載しました。
-実際にはチーム毎にこのオプションを指定して実行する。などが出てくると思います。
+実際にはチーム毎に"このオプションを指定して実行する。"などが出てくると思います。
 
-この記事では主にコマンドベースでの`fastlane match`の使用でしたが、fastlaneの実行ファイルにmatchを組み込めばデプロイの自動化もすぐに構築できるかと思いますので、ぜひ検討してみてください。
+この記事では主に`fastlane match`のみの記載でしたが、これを基にデプロイの自動化もすぐに構築できるかと思いますので、ぜひ検討してみてください。
 
 <br>
 
 ::::details 参考
-https://zenn.dev/tsukatsuka1783/articles/apple_delevoler
 https://qiita.com/kotarella1110/items/840af2cf80aaea1fb035
 ::::
