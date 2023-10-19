@@ -9,9 +9,9 @@ published: true
 https://zenn.dev/minedia/articles/7928ef7545b393
 
 # 1.「CodeRabbit」と「ai-pr-reviewer」とを混同しない
-[CodeRabbit](https://coderabbit.ai/)は、GitHub Appとして動作するサービス。「CodeRabbitのPro版」
+[CodeRabbit](https://coderabbit.ai/)は、GitHub Appとして動作するサービス。「≒ CodeRabbitのPro版」
 
-[ai-pr-reviewer](https://github.com/marketplace/actions/ai-based-pr-reviewer-summarizer-with-chat-capabilities)は、CodeRabbitが提供するGitHub Actions。「CodeRabbitのOSS版」
+[ai-pr-reviewer](https://github.com/marketplace/actions/ai-based-pr-reviewer-summarizer-with-chat-capabilities)は、CodeRabbitが提供するGitHub Actions。「≒ CodeRabbitのOSS版」
 
 基本の機能としてはどちらも同じで、PRのレビューなどをしてくれるもの。
 
@@ -23,18 +23,30 @@ https://zenn.dev/minedia/articles/7928ef7545b393
 ※ai-pr-reviewerについては、こちらの記事もすごく参考になりました。
 https://zenn.dev/egstock_inc/articles/86c07c9fe3bddf
 
-### CodeRabbit（GitHub App）
+<br>
+
+## CodeRabbit（GitHub App）は無料プランでも補助ツールとしては十分使える
 せっかくなので、GitHub AppであるCodeRabbitも軽く紹介。
 [「CodeRabbit/Docs」](https://coderabbit.ai/docs)
 
 基本的な使用方法は簡単で、AppとGitHubとの連携を承認して、使用したいレポジトリを選択するだけでOK。
+Pro版の料金は1シートに対して15ドル。
 
 新規登録後は自動的に7日間の無料期間が始まるとの記載あり。
 > 1: Sign Up for CodeRabbit
 Start your journey with CodeRabbit by registering via your GitHub or GitLab account. With a simple, few-click process, you'll connect CodeRabbit to your account and be ready to go in no time. Each new sign-up automatically starts with a 7-day trial for up to 50 seats, letting your team dive into CodeRabbit's capabilities.
 
+無料期間終了後は、自動的に無料プランが適用される。
+無料プランだと、レビューはされずにPRの要約だけ実行される。
 
-料金は1シートに対して15ドル。
+**※ 要約だけでも十分便利なので、無料プランでも十分使えると思う。**
+むしろPRがレビューコメントまみれにならなずにスッキリとして思ったよりいい感じ。
+PR要約ツールとしては十分使えそう。（自動レビュー目的ではなくなってしまっているが、、）
+
+以下、無料プランの出力例。
+![](https://storage.googleapis.com/zenn-user-upload/383a01cb77b9-20231019.png)
+![](https://storage.googleapis.com/zenn-user-upload/ff44be8fdc56-20231019.png)
+
 
 <br>
 
@@ -90,10 +102,19 @@ https://community.openai.com/t/api-request-limit-increase/409745
 ::: message 
 TODO: 進展があり次第記事更新
 
-追記
-rate limitの上限を引き上げたい場合は、Formから申請してください。的な回答が返ってきた。
+**10/10 追記①**
+"rate limitの上限を引き上げたい場合は、Formから申請してください。"的な回答が返ってきた。
 →このrate limitが課金後でもデフォルト値だったっぽい？？
-→ちょっと試しで使用したかっただけなので、上限引き上げの申請まではしないが（正当な必要性がないと申請は認めない的な記載があるため）、真相が気にする。。
+→ちょっと試しで使用したかっただけなので、上限引き上げの申請まではしない（正当な必要性がないと申請は認めない的な記載があるため）が、最初からこういった仕様なのか最近変更になったのか気になる。
+→もうちょっと深く問い合わせてみる。
+
+**10/13 追記②**
+かなり丁寧に問い合わせたつもりだが、テンプレで"rate limitの上限を引き上げたい場合は、Formから申請してください。"と同じ内容で帰ってきたので断念。
+
+**10/19 追記③**
+しばらく経ってドキュメントを確認すると、新たにrate limitの制限について明記されていた。
+（5ドル振り込んでチャージしただけじゃ上限変わらかったので、実際に5ドルのapi使用料が発生したら上限上がるっぽい）
+![](https://storage.googleapis.com/zenn-user-upload/fc6e583276e2-20231019.png)
 
 
 :::
@@ -107,7 +128,7 @@ rate limitの上限を引き上げたい場合は、Formから申請してくだ
 <!-- すると、無事にレビューが完了しました。 -->
 
 初めてOpenAIのAPIを取得する。って方はrate limitの上限値がしっかりと課金後の上限値になっているかは要確認。
-その辺の仕様を知らずにActionsの設定の方に問題があると思ってgpt-4のActionsを回しまくると、**簡単に従量課金が進むので要注意。**
+その辺の仕様を知らずに、発生したエラーがActionsの設定の方に問題があると思ってgpt-4のActionsを回しまくると、**簡単に従量課金が進むので要注意。**
 <!--  -->
 
 <br>
