@@ -1,8 +1,8 @@
 ---
-title: "【codecov】codecov.ymlの設定についてのあれこれ"
+title: "【Codecov】codecov.ymlの設定についてのあれこれ"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [codecov, GitHubActions, GitHub,CI,CD]
+topics: [Codecov, GitHubActions, GitHub, テスト, カバレッジ]
 published: true
 publication_name: ncdc
 ---
