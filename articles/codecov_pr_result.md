@@ -94,7 +94,7 @@ codecovのコンソールを確認してみる。
 変更のあったファイル毎のカバレッジ情報を表示。
 
 
-# [（Coverage Delta(Δ)）](https://docs.codecov.com/docs/codecov-delta)
+# [Coverage Delta(Δ)](https://docs.codecov.com/docs/codecov-delta)
 Coverage Δ 例
 | absolute | <relative> | (change)  |
 | -------- | ---------- | --------- |
