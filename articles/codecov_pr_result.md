@@ -13,6 +13,8 @@ Codecovを導入後、PRページに表示されるcodecovの計測結果の見�
 ![](https://storage.googleapis.com/zenn-user-upload/bd5714b0de22-20231020.png)
 *↑GitHubのPR時に表示されるcodecov例*
 
+<br>
+
 ## Attention: ○lines in your changes ...
 ```
 Attention: 12 lines in your changes are missing coverage. Please review.
