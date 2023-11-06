@@ -8,6 +8,8 @@ publication_name: ncdc
 ---
 
 # GitHubのPR時に表示されるcodecovの計測結果の見方
+Codecovを導入後、PRページに表示されるcodecovの計測結果の見方を記載。
+
 ![](https://storage.googleapis.com/zenn-user-upload/bd5714b0de22-20231020.png)
 *↑GitHubのPR時に表示されるcodecov例*
 
@@ -21,6 +23,7 @@ GitHubのPRページの`File changed`を確認すると、警告がある行そ�
 ![](https://storage.googleapis.com/zenn-user-upload/2763ac9b12ac-20231019.png)
 
 <br>
+<br>
 
 ## Comparison is base ...
 ```
@@ -30,6 +33,8 @@ Comparison is base (xxxxxxx) 8.05% compared to head (xxxxxxx) 8.78%.
 上記の例だと、ベースbranchのcommitから今回のcommitまでのカバレッジの変化は`+0.73%`であることがわかる。
 
 <br>
+<br>
+
 
 ## Additional details and impacted files
 ```diff yml: Additional details and impacted files
@@ -66,7 +71,7 @@ Comparison is base (xxxxxxx) 8.05% compared to head (xxxxxxx) 8.78%.
 ### Misses
 テストによって実行されていないコード行の数を表示。
 
-【Tips】
+### 【Tips】
 [Attention: ○lines ...](#attention-○lines-in-your-changes)で表示されている行数と、`Misses`で表示される行数は、どちらもカバレッジが欠けている行数を示しているが違いは何か？
 
 `Attention ...` の部分で表示されている行は、今回の変更で追加した行が表示されているので分かる。
@@ -88,12 +93,20 @@ codecovのコンソールを確認してみる。
 
 [Codecov Docs / Unexpected Coverage Changes](https://docs.codecov.com/docs/unexpected-coverage-changes)
 
+<br>
+<br>
+
 ## Flag
 フラグ設定している場合は、そのフラグ毎のカバレッジ情報を表示。
+
+<br>
+<br>
 
 ## Files
 変更のあったファイル毎のカバレッジ情報を表示。
 
+<br>
+<br>
 
 # [Coverage Delta(Δ)](https://docs.codecov.com/docs/codecov-delta)
 Coverage Δ 例
