@@ -4,6 +4,7 @@ emoji: "📊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Codecov, GitHub, PR, カバレッジ, テスト]
 published: true
+publication_name: ncdc
 ---
 
 # GitHubのPR時に表示されるcodecovの計測結果の見方
