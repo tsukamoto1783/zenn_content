@@ -6,7 +6,7 @@ topics: [RevenueCat, flutter, ios, inAppPurchase,]
 published: true
 ---
 RevenueCatを使用してアプリ内課金を実装する際に、App Store Connectのサブスクリプション設定が必要です。
-この設定が似たような項目がいっぱいありややこしかったので、設定がどこに反映さえるかをまとめてみました。
+この設定が似たような項目がいっぱいありややこしかったので、設定がどこに反映されるかをまとめてみました。
 
 ### 前提
 - 動作確認にはRevenueCatが提供しているサンプルアプリを使用しています。
@@ -30,7 +30,7 @@ RevenueCatを使用してアプリ内課金を実装する際に、App Store Con
 # 機能 > サブスクリプション > サブスクリプショングループ
 ![](https://storage.googleapis.com/zenn-user-upload/703c984bb23d-20231116.png =6700x)
 
-- **グループ名は変更不可。**
+- **グループ名は変更できません。**
 - グループ名がユーザに表示されることはない。
 - RevenueCatのコンソールにもグループ名を設定する箇所はない。
 
@@ -64,7 +64,7 @@ Pro版のサブスクには、`weekly, monthly, yearly`の3つのプランがあ
 ### 製品ID
 > レポートに使用される固有な英数字のIDです。ある製品に対して使用した製品IDは、その製品が削除されても再度使用することはできません。
 
-- **製品IDは変更不可。**
+- **製品IDは変更できません。**
   - 複数のサブスクプランを出す場合は、製品IDの命名規則を考えておかないと統一性無くしそう。
     - IDの命名は、`<固有のprefix>_****_subscription`とか？   
     - RevenueCatが考えるID例は下記参照。
@@ -109,8 +109,8 @@ Pro版のサブスクには、`weekly, monthly, yearly`の3つのプランがあ
 ![](https://storage.googleapis.com/zenn-user-upload/1fede073d9ac-20231116.png =450x)
 <br>
 
-**※App Storeのローカリゼーションという設定項目は2種類あるので注意。**
-**「デバイスの設定画面の表示設定」と「AppStore&決済画面の表示設定」とがあってややこしい。**
+**※App Store Connectのローカリゼーションという設定項目は2種類あるので注意。**
+**「デバイスの設定画面の表示設定」と「AppStore & 決済画面の表示設定」があり、混同注意。**
 
 <br>
 
@@ -162,4 +162,4 @@ RevenueCatのOfferingsからは取得できる。
 
 ### 参考
 RevenueCatの`Entitlement, Offerings, Products`については以下に記載しました。
-[tmp]()
+[WIP]()
