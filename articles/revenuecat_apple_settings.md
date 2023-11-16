@@ -70,7 +70,7 @@ Pro版のサブスクには、`weekly, monthly, yearly`の3つのプランがあ
     - RevenueCatが考えるID例は下記参照。
     [「Docs/iOS 製品のセットアップ/アプリ内購入を作成する」](https://www.revenuecat.com/docs/ios-products#create-an-in-app-purchase)
 - このサブスク商品のID。RevenueCatと連携するためにも使用する。
-  ![](https://storage.googleapis.com/zenn-user-upload/66aee071bfa4-20231115.png)
+![](https://storage.googleapis.com/zenn-user-upload/38f3cc650e72-20231116.png)
 
 ---------
 <br>
@@ -157,3 +157,9 @@ RevenueCatのOfferingsからは取得できる。
 - etc.
 
 ※未検証部分もちらほらあるので、適宜修正予定。
+
+<br>
+
+### 参考
+RevenueCatの`Entitlement, Offerings, Products`については以下に記載しました。
+[tmp]()
