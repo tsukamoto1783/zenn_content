@@ -87,7 +87,7 @@ RevenueCatのコンソールにはPackages単体の項目はなく、Offeringの
 ## Offering
 ![](https://storage.googleapis.com/zenn-user-upload/c9943adaa666-20231117.png =400x)
 
-**アプリの支払い画面でユーザーに見せる製品一覧のこと。**
+**アプリの支払い画面などでユーザーに見せる製品一覧のこと。**
 **上記で設定した[Package](#package)を組み合わせることで、特定の条件のユーザーに異なる製品一覧を動的に表示することが可能。**
 
 詳細はこちらも参照：[docs/製品の表示](https://www.revenuecat.com/docs/displaying-products)
