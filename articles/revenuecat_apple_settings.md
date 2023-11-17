@@ -168,5 +168,5 @@ RevenueCatのOfferingsからは取得できる。
 <br>
 
 ### 参考
-RevenueCatの`Entitlement, Offerings, Products`については以下に記載しました。
-[WIP]()
+RevenueCatの`Entitlement, Offerings, Products`については別途以下参照。
+https://zenn.dev/tsukatsuka1783/articles/revenuecat_product_composition
