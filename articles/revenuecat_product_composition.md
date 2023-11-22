@@ -1,9 +1,10 @@
 ---
-title: "【RevenueCat】OfferingなどのRevenueCat独特の構成をざっくり理解する"
+title: "【RevenueCat】OfferingなどのRevenueCat独特の構成を理解する"
 emoji: "😺"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [RevenueCat, flutter,ios,android, inAppPurchase,]
 published: true
+publication_name: ncdc
 ---
 Entitlement、Offering、Package, Productなど、RevenueCat独特の構成？が存在する。
 [公式ドキュメント](https://www.revenuecat.com/docs/entitlements)にも詳しく図付きで説明してくれているので分かりやすいが、理解するまで少し時間がかかったので自分なりにざっくりまとめてみた。

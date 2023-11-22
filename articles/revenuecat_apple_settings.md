@@ -4,6 +4,7 @@ emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [RevenueCat, flutter, ios, inAppPurchase,]
 published: true
+publication_name: ncdc
 ---
 RevenueCatを使用してアプリ内課金を実装する際に、App Store Connectのサブスクリプション設定が必要です。
 この設定が似たような項目がいっぱいありややこしかったので、設定がどこに反映されるかをまとめてみました。
@@ -138,10 +139,7 @@ Pro版のサブスクには、`weekly, monthly, yearly`の3つのプランがあ
   <br>
 
 ### 説明文
-【WIP】
-デフォルトだと、どこに表示される？
-
-RevenueCatのOfferingsからは取得できる。
+RevenueCatだとOfferingsから取得できる。
 以下、サンプルアプリ参照。
 ![](https://storage.googleapis.com/zenn-user-upload/038b4d2de08e-20231116.png =300x)
 
