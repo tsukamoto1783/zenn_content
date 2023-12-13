@@ -211,6 +211,7 @@ when()を使用する事で、モックインスタンスのメソッドの戻�
 
 ```dart
 test('when test', () {
+    final cat = MockCat();
     // スタブ化せずに呼び出すと、デフォルト値が返される
     expect(cat.sound(), equals("")); // test OK
 });
@@ -220,6 +221,7 @@ test('when test', () {
 特定のメソッド呼び出しに対して、固定値を返す。
 ```dart
 test('when.thenReturn test', () {
+    final cat = MockCat();
     when(cat.sound()).thenReturn("Hoge");
 
     expect(cat.sound(), equals("Hoge")); // test OK
@@ -230,6 +232,7 @@ test('when.thenReturn test', () {
 特定のメソッド呼び出しに対して、例外をスローする。
 ```dart
 test('when.thenThrow test', () {
+    final cat = MockCat();
     when(cat.lives).thenThrow(RangeError('Boo'));
     
     expect(() => cat.lives, throwsRangeError); // test OK
@@ -242,6 +245,7 @@ test('when.thenThrow test', () {
 
 ```dart
 test('when.thenAnswer test', () {
+    final cat = MockCat();
     var responses = ["Purr", "Meow"];
     when(cat.sound()).thenAnswer((_) => responses.removeAt(0));
 
@@ -284,7 +288,7 @@ test('Example test', () {
 期待される処理が実行されたかどうかを確認する。
 ```dart
 group('verify', () {
-    var cat = MockCat();
+    final cat = MockCat();
 
     test('verify test', () {
         cat.sound();
@@ -309,7 +313,7 @@ group('verify', () {
  複数の処理が特定の順序で実行されたことを確認する。
  ```dart
 test('verifyInOrder test', () async {
-　  var cat = MockCat();
+　  final cat = MockCat();
 
     cat.sound();
     cat.sleep();
@@ -325,7 +329,7 @@ test('verifyInOrder test', () async {
  期待される処理が一度も実行されていないことを確認する。
  ```dart
 test('verifyNever test', () {
-    var cat = MockCat();
+    final cat = MockCat();
 
     cat.sound();
     cat.sleep();
@@ -340,7 +344,7 @@ test('verifyNever test', () {
  モックオブジェクト内の処理が、一切呼び出されていないことを確認する。
  ```dart
 test('verifyZeroInteractions test', () {
-　  var cat = MockCat();
+　  final cat = MockCat();
 
     // 指定の処理が、一度も呼ばれていないかを確認
     verifyZeroInteractions(cat); // test OK
@@ -349,7 +353,7 @@ test('verifyZeroInteractions test', () {
 ※ groupで共通のモックオブジェクトを使用する場合は注意。
  ```dart
 group('verify', () {
-    var cat = MockCat();
+    final cat = MockCat();
 
     test('verify test', () {
         cat.sound();
@@ -368,7 +372,7 @@ group('verify', () {
 モックオブジェクト内の処理が、期待される処理以外に呼び出されていないことを確認する。
 ```dart
 group('verifyNoMoreInteractions verify', () {
-    var cat = MockCat();
+    final cat = MockCat();
 
     test('test1', () {
         cat.sound();
