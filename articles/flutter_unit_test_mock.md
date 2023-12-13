@@ -168,6 +168,10 @@ void main() {
 
 ※Catモデルだと、モック化する旨みは無いが、挙動確認用のサンプルコードなのであしからず。
 
+:::message
+記事作成時のmockitoバージョンは`5.4.0`です。
+:::
+
 https://pub.dev/packages/mockito
 
 ```dart
