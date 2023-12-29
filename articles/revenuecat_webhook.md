@@ -1,13 +1,14 @@
 ---
-title: "【RevenueCat】webhookを使ってサーバー側で購入情報を取得する"
+title: "【RevenueCat】Webhookを使ってサーバー側で購入情報を取得する"
 emoji: "🐾"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [RevenueCat, Flutter, ios, android,inaAppPurchase]
 published: true
+publication_name: ncdc
 ---
 
-RevenueCatには便利なwebhook機能が存在します。
-webhookを使うことで、アプリ内課金の購入情報をサーバー（バックエンド）側でも管理することができます。
+RevenueCatには便利なWebhook機能が存在します。
+Webhookを使うことで、アプリ内課金の購入情報をサーバー（バックエンド）側でも管理することができます。
 
 記載内容の詳細は、以下の公式ドキュメントを参照してください。
 
@@ -22,21 +23,21 @@ https://codewithandrea.com/articles/webhooks-flutter-backend/
 
 ## 前提
 サーバー（バックエンド）は、FireStore以外のDBを使用していることを前提として記載。
-FireStoreを使用している場合は、webhookを使わずにFirebase Extensionを使うとより便利に同期できる。
+FireStoreを使用している場合は、Webhookを使わずにFirebase Extensionを使うとより便利に同期できる。
 https://www.revenuecat.com/docs/firebase-integration
 
 https://extensions.dev/extensions/revenuecat/firestore-revenuecat-purchases
 
 <br>
 
-## webhookの使用背景
+## Webhookの使用背景
 - サーバー側で購入情報を管理・同期しておきたい。
   - ex.) 管理画面など、スマホアプリとは別の画面で購入情報を表示したい。
 - etc.
 
 <br>
 
-## webhookを使用する際の考慮点
+## Webhookを使用する際の考慮点
 主には公式ドキュメント参照。
 ドキュメントを読んでよく分からなかった部分を以下抜粋。
 
@@ -61,8 +62,8 @@ https://community.revenuecat.com/sdks-51/why-is-it-recommended-to-go-through-the
 <br>
 
 ## 設定
-webhookの設定は、コンソールの`Integrations`からwebhookを選択してエンドポイントを貼り付けるだけ。
-また、設定画面からwebhookへの手動のテスト送信も可能。
+Webhookの設定は、コンソールの`Integrations`からWebhookを選択してエンドポイントを貼り付けるだけ。
+また、設定画面からWebhookへの手動のテスト送信も可能。
 |                              RevenueCatコンソール                              |                              RevenueCatコンソール                              |
 | :----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
 | ![](https://storage.googleapis.com/zenn-user-upload/4081305ef09b-20231229.png) | ![](https://storage.googleapis.com/zenn-user-upload/17e23f690976-20231229.png) |
@@ -70,20 +71,20 @@ webhookの設定は、コンソールの`Integrations`からwebhookを選択し�
 
 <br>
 
-webhookの動作確認には、[webhook.site](https://webhook.site/)を使うと便利。
-webhook.siteにアクセスするとURLが自動発行されるので、それを設定画面のエンドポイント項目に貼り付けるだけでwebhookの確認ができる。
-|                            webhook.site起動時の画面                            |                              webhook受信時の画面                               |
+Webhookの動作確認には、[Webhook.site](https://webhook.site/)を使うと便利。
+Webhook.siteにアクセスするとURLが自動発行されるので、それを設定画面のエンドポイント項目に貼り付けるだけでWebhookの確認ができる。
+|                            Webhook.site起動時の画面                            |                              Webhook受信時の画面                               |
 | :----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
 | ![](https://storage.googleapis.com/zenn-user-upload/b9a9c3814323-20231229.png) | ![](https://storage.googleapis.com/zenn-user-upload/368d0e10d941-20231229.png) |
 
 
 <br>
 
-RevenueCatが送信するwebhookの中身や、webhook発火イベントの種類についてはドキュメント参照。
+RevenueCatが送信するWebhookの中身や、Webhook発火イベントの種類についてはドキュメント参照。
 https://www.revenuecat.com/docs/event-types-and-fields
 https://www.revenuecat.com/docs/sample-events
 
 <br>
 
 ## 終わり
-webhook.siteで動作確認ができたら、実際のサーバー側にエンドポイントを作成して、購入情報を保存する処理を実装すれば自前のさーバー側でも購入情報を管理・同期ができるようになります。
+Webhook.siteで動作確認ができたら、実際のサーバー側にエンドポイントを作成して、購入情報を保存する処理を実装すれば自前のサーバー側でも購入情報を管理・同期ができるようになります。
