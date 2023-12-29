@@ -3,7 +3,7 @@ title: "【RevenueCat】webhookを使ってサーバー側で購入情報を取�
 emoji: "🐾"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [RevenueCat, Flutter, ios, android,inaAppPurchase]
-published: false
+published: true
 ---
 
 RevenueCatには便利なwebhook機能が存在します。
