@@ -3,7 +3,7 @@ title: "【Flutter】mockitoでclassのstaticメソッドをモック化する"
 emoji: "🔧"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter,dart,mockito,static,test]
-published: false
+published: true
 ---
 
 staticメソッドをmockitoでモック化する方法がわからなかったので調べてみた。
@@ -90,6 +90,8 @@ staticなclassメソッドをモック化してみる。
 テスト実施しようとすると、実行する以前に以下のように`そんなメソッドは存在しない`と怒られる。
 `build_runner`で生成されたファイルを見てみても、staticメソッドはモック化されていないことが確認できる。
 
+そもそもstaticなclassメソッドの場合はインスタンスを生成せずに直接呼び出すメソッドなので、当然モック化もできない。
+
 >The method 'sound' isn't defined for the type 'MockCat'.
 Try correcting the name to the name of an existing method, or defining a method named 'sound'.
 
@@ -109,17 +111,16 @@ class Cat {
   static sound() => "Meow";
 }
 
-// Catクラスをモック化
+// モック化
+// → staticメソッドはモック化されない
 @GenerateNiceMocks([MockSpec<Cat>()])
-
-// Fluttertoastクラスをモック化
 @GenerateNiceMocks([MockSpec<Fluttertoast>()])
 
 void main() {
   test('Cat static method test', () {
     final cat = MockCat();
 
-    cat.sound();
+    cat.sound(); // ←error
 
     // 指定の処理が呼び出されかどうかを確認
     verify(cat.sound()); // ←error
@@ -128,7 +129,7 @@ void main() {
   test('Fluttertoast static method test', () {
     final toast = MockFluttertoast();
 
-    toast.toast();
+    toast.toast(); // ←error
 
     // 指定の処理が呼び出されかどうかを確認
     verify(toast.toast()); // ←error
