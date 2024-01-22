@@ -38,7 +38,8 @@ https://docs.flutter.dev/deployment/ios#upload-the-app-bundle-to-app-store-conne
 
 |                                     xcode                                      |                                     xcode                                      |
 | :----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
-| ![](https://storage.googleapis.com/zenn-user-upload/51872ff7623d-20240122.png) | ![](https://storage.googleapis.com/zenn-user-upload/bf528df07b64-20240122.png) |
+| ![](https://storage.googleapis.com/zenn-user-upload/32f600e15fac-20240122.png) | ![](https://storage.googleapis.com/zenn-user-upload/bf528df07b64-20240122.png) |
+
 
 
 ```yaml
