@@ -5,8 +5,9 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter,swift, ios, swiftui, uikit]
 published: true
 ---
-「SwiftでのiOSアプリ開発の流れや基礎をとりあえず知っておきたい。Viewの実装方法違いをざっくり知りたい。」
-といった想いからSwiftでFlutterお馴染みのカウンターアプリと同等のアプリを作成し、それぞれの実装方法の違いを確認してみる。
+**「SwiftでのiOSアプリ開発の流れや基礎をとりあえず知っておきたい。Viewの実装方法違いをざっくり知りたい。」**
+
+ということでSwiftでFlutterお馴染みのカウンターアプリと同等のアプリを作成し、それぞれの実装方法の違いを確認してみる。
 
 :::message
 Swift初触りの記事なので、Swiftコードのお作法とかは考慮されてません。
@@ -17,7 +18,7 @@ Swift初触りの記事なので、Swiftコードのお作法とかは考慮さ�
 
 ### はじめに
 StoryboardやUIKit、SwiftUIなど、「どれがどれ？違いは？」と理解できていなかったので調べていると、以下の記事がわかりやすくまとめてくださっていました。
-こちらの内容を軽く目を通してから読むと少し理解が進むかと思います。
+こちらの内容に軽く目を通すと、かなり理解が進みました。
 
 https://qiita.com/os1ma/items/a8b946dba891f01ccc4e
 https://qiita.com/shiz/items/d5d0f0330460a53c16ae
