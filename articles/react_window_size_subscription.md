@@ -73,7 +73,7 @@ export const useWindowSize = (): WindowSize => {
 ```
 
 ```ts: useWindowSize.ts（パターン2）
-export const useWindowSize2 = (): number[] => {
+export const useWindowSize = (): number[] => {
   const [windowSize, setWindowSize] = useState([0, 0]);
 
   useEffect(() => {
@@ -90,7 +90,12 @@ export const useWindowSize2 = (): number[] => {
 ```
 
 ```ts: useWindowSize.ts（パターン3）
-export const useWindowSize3 = () => {
+type WindowSize = {
+  windowWidth: number;
+  windowHeight: number;
+};
+
+export const useWindowSize = () => {
   const getWindowSize = () => {
     const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
 
@@ -157,7 +162,7 @@ const subscribeWindowSizeChange = (callback: () => void) => {
   return () => window.removeEventListener("resize", callback);
 };
 
-export const useWindowSizeSyncExternalStore = (): WindowSize => {
+export const useWindowSize = (): WindowSize => {
   const width = useSyncExternalStore(subscribeWindowSizeChange, getWindowWidth);
   const height = useSyncExternalStore(
     subscribeWindowSizeChange,
