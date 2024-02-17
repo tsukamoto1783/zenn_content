@@ -120,8 +120,7 @@ export const useWindowSize3 = () => {
 `useEffect` と `useLayoutEffect` の違いの詳細はここでは割愛しますので、以下の記事などを参照ください。
 （とりあえず`useEffect`で実装しておいて、レンダリング時のちらつきやパフォーマンスに問題がある場合は`useLayoutEffect`を検討するぐらいでいいのでは、と個人的には思ってます。）
 
-https://zenn.dev/syu/articles/6b96e34535b33e#useeffect%E3%81%A8uselayouteffect%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91
-
+https://zenn.dev/syu/articles/6b96e34535b33e
 <br>
 
 # React18 以降
