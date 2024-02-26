@@ -23,7 +23,7 @@ https://konvajs.org/docs/sandbox/SVG_On_Canvas.html
 
 <br>
 
-## 補足
+## はじめに
 
 SVG 描画の検証にあたり以降の記載に出てくる`SvgImage`コンポーネントは、全て以下のような画面に表示されるものとします。
 
@@ -259,7 +259,7 @@ export const createSvgUrl = (svgString: string): string => {
 
 <br>
 
-## 備考
+# 備考
 
 - SVG 画像のパスを直接引数に渡すと上手いこと描画されない。
   フォルダ内の画像を使用する際は、import で画像を読み込んでから useImage や window.Image に渡す。
