@@ -9,7 +9,7 @@ publication_name: ncdc
 
 https://konvajs.org/docs/react/Images.html
 
-konva ドキュメントの react/images 項目には SVG 画像の使用方法 については特に記載されていない。
+konva ドキュメントの `react/images` 項目には SVG 画像の使用方法 については特に記載されていない。
 
 <br>
 
@@ -19,13 +19,13 @@ https://konvajs.org/docs/sandbox/SVG_On_Canvas.html
 
 <br>
 
-なので、 react で SVG 画像を描画する方法について、上記リンク先の内容を参考に色々と試していく。
+なので、 React で SVG 画像を描画する方法について、上記リンク先の内容を参考に色々と試していく。
 
 <br>
 
 ## 補足
 
-svg 描画の検証にあたり以降の記載に出てくる`SvgImage`コンポーネントは、全て以下のような画面に表示されるものとします。
+SVG 描画の検証にあたり以降の記載に出てくる`SvgImage`コンポーネントは、全て以下のような画面に表示されるものとします。
 
 ```tsx: SvgKonvaPage.tsx
 import { Box } from "@mui/material";
@@ -87,7 +87,7 @@ const innerBoxStyles = (width: number, height: number) => ({
 > If you take a look into the image tutorial and API docs you will see that you need to use a window.Image instance as the image attribute for Konva.Image. So you need to create and download it manually.
 
 ドキュメントの通り、`window.Image` を使用して画像を描画してみる。
-useState と useEffect を使用して、安全にレンダリングする。
+useState と useEffect を使用して安全にレンダリングする。
 
 ```tsx: SvgImage.tsx
 import { Image } from "react-konva";
@@ -261,13 +261,13 @@ export const createSvgUrl = (svgString: string): string => {
 
 ## 備考
 
-- svg 画像のパスを直接引数に渡すと上手いこと描画されない。
-  フォルダ内の画像を使用する際は、import で画像を読み込んでから useImage や Window.Image に渡す。
+- SVG 画像のパスを直接引数に渡すと上手いこと描画されない。
+  フォルダ内の画像を使用する際は、import で画像を読み込んでから useImage や window.Image に渡す。
 
 https://github.com/konvajs/react-konva/issues/510
 
 - Konva（react-konva）の Image コンポーネントの image プロパティに渡せる型は以下。
-  上記で記載したサンプルコードは全て`HTMLImageElement`を返すようにしているので、他の型で返すようにすることも可能。
+  上記で記載したサンプルコードは全て`HTMLImageElement`を image プロパティに渡すようにしているので、他の型で image に渡すようにすることも可能。
   ```ts
   type CanvasImageSource =
     | HTMLOrSVGImageElement
