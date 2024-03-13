@@ -7,14 +7,14 @@ published: true
 publication_name: ncdc
 ---
 
-Flutter のログライブラリでメジャーな[logger](https://pub.dev/packages/logger) などのライブラリを使用すると、デバッグコンソールでのログ出力が種類ごとに色がつく。
+Flutter のログライブラリでメジャーな[logger](https://pub.dev/packages/logger) などを使用すると、デバッグコンソールでのログ出力が種類ごとに色がつくようになる。
 
 ![](https://storage.googleapis.com/zenn-user-upload/04f0ae337d3a-20240310.png)
 _logger の pub.dev から引用_
 
 <br>
 
-しかし、実際に動かしてみると Android だとデフォルトで問題なくログ毎に色分けされているが、Ios だと色がつかない。
+しかし、基本の設定をして実際に動かしてみると Android だとデフォルトで問題なくログ毎に色分けされているが、Ios だと色がつかない。
 Ios でも色がつくようにしたい。
 
 |                                    Android                                     |                                      Ios                                       |
