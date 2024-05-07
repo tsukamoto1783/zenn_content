@@ -161,7 +161,7 @@ build_app 関数は、Xcode で言う`Archive`実行に該当。
   - ドキュメント的にはエイリアスされた方がメイン？の記載になっているので、エイリアス版を使用する方が良いかもです。
     ![](https://storage.googleapis.com/zenn-user-upload/13996d7b2b4c-20240507.png)
 
-- ios だけのリリースだと XcodeCloud でも良さそうだけど、android も fastlane 処理を組んでいるなら fastlane で統一した方がよいか。とかとか難しいところです。。。(試したいことは他にも沢山。)
+- ios だけのリリースだと XcodeCloud でも良さそうだけど、android も fastlane 処理を組んでいるなら fastlane で統一した方がよいか。とかとか悩ましいところです。。。
 
 <br>
 
