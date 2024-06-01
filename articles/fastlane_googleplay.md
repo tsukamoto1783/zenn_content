@@ -3,7 +3,8 @@ title: "【Flutter】fastlaneでGooglePlayの内部テストを配信する"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, dart, fastlane, PlayStore, android]
-published: false
+published: true
+# publication_name: ncdc
 ---
 
 タイトル通り、fastlane で GooglePlay の内部テストを配信できるようにしていきます。
@@ -20,6 +21,15 @@ https://zenn.dev/ncdc/articles/fastlane_match#fastlane-match-%E3%81%AE%E5%B0%8E%
 <br>
 
 # 全体像
+
+```yaml:使用するフォルダ構成
+project(root)
+└─ android
+   └─ fastlane
+       ├─ Appfile
+       ├─ Fastfile
+       └─ <key>.json
+```
 
 ```ruby: Appfile
 # 1.keyやpackageNameの設定
@@ -163,7 +173,8 @@ https://docs.fastlane.tools/actions/upload_to_play_store/
 <br>
 
 **【注意】**
-現状の記載だと、`release_status`が`draft`以外だと以下のエラーになる。**＝** 内部テストが下書き状態でしかリリースできない。
+現状の記載だと、`release_status`が`draft`以外だと以下のエラーになる。
+**＝ 内部テストが下書き状態でしかリリースできない。**
 
 ```txt
 [!] Google Api Error: Invalid request - Only releases with status draft may be created on draft app.
@@ -232,6 +243,8 @@ https://jonathancardoso.com/en/blog/automated-release-publish-deployment-react-n
   - 参考：
     - https://github.com/fastlane/fastlane/issues/21529
     - https://github.com/fastlane/fastlane/issues/21530
+- iOS の TestFlight に関しては、以下の記事参照。
+  - https://zenn.dev/ncdc/articles/fastlane_testflight
 
 <br>
 <br>
