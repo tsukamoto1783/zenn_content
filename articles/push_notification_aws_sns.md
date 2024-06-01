@@ -2,7 +2,7 @@
 title: "AWS SNSとFirebase Cloud Messagingを使ってモバイルデバイスにプッシュ通知を送信する"
 emoji: "📮"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [flutter, fcm, awsSNS, aws, firebase]
+topics: [flutter, fcm, SNS, aws, firebase]
 published: true
 publication_name: ncdc
 ---
@@ -45,6 +45,8 @@ AWS SNS を選択して、トピックを作成。
 
 ![](https://storage.googleapis.com/zenn-user-upload/888c120a8da7-20240531.png)
 
+<br>
+
 ### トピックとは？
 
 https://docs.aws.amazon.com/ja_jp/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html
@@ -58,15 +60,15 @@ Amazon SNS において、メッセージを公開するための「アクセス
 
 エンドポイントには、今回のプッシュ通知以外にも、SMS、HTTP/S エンドポイント、Amazon SQS、AWS Lambda などがエンドポイントに設定できます。
 
-AWS SNS でのプッシュ通知で言うと、
+AWS SNS でのプッシュ通知機能だけで言うと、
 **AWS SNS で設定した「トピック」に紐づいているデバイス（デバイストークン）に対して、プッシュ通知が配信されます。**
-**「トピック」≒「グループ」**
+**「トピック」≒「送信対象グループ」**
 
 <br>
 
-## プッシュ通知サービスのプラットフォーム
+## プッシュ通知サービスのプラットフォーム登録
 
-アプリで使用するプッシュ通知サービスのプラットフォームを設定。
+アプリで使用するプッシュ通知サービスのプラットフォームを登録する。
 ![](https://storage.googleapis.com/zenn-user-upload/f1227ffd9550-20240531.png)
 
 作成ボタンを押下後、「アプリ名」と「プッシュ通知サービスのプラットフォーム」を選択する画面が出るので、各種設定していく。
@@ -87,12 +89,13 @@ json ファイルを作成して、その json ファイルをアップロード
 
 <br>
 
-## プッシュ通知を送信する端末のトークン登録
+## プッシュ通知を送信する端末情報の登録
 
-先ほど作成したアプリケーションを選択し、通知を送信する端末のトークンを登録する。
-Flutter アプリ側では、以下のようなコードで取れるトークンのこと。
+先ほど作成したアプリケーションを選択し、メッセージを送信する端末情報（デバイストークン）を登録する。
 
-```dart: 例
+Flutter アプリで言うと、以下のようなコードで取れるトークンのこと。
+
+```dart
 final messaging = FirebaseMessaging.instance;
 final token = await messaging.getToken();
 ```
@@ -109,12 +112,12 @@ ARN は後ほど使用するのでコピーしておく。
 
 ## サブスクリプション設定
 
-次にサブスクリプションの設定を行う。
+次にサブスクリプション設定を行う。
 ![](https://storage.googleapis.com/zenn-user-upload/af6ecee68b10-20240531.png =500x)
 ![](https://storage.googleapis.com/zenn-user-upload/a26df7147440-20240531.png =500x)
 ![](https://storage.googleapis.com/zenn-user-upload/30578e34eedb-20240531.png =300x)
 
-先ほど作成した、「トピック」と端末設定後にコピーした「ARN」を設定して登録する。
+先ほど作成した、「トピック」と端末登録後にコピーした「ARN」を設定して登録する（購読対象とする）。
 
 ![](https://storage.googleapis.com/zenn-user-upload/de7b321631ec-20240531.png)
 
