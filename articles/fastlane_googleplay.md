@@ -4,7 +4,7 @@ emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, dart, fastlane, PlayStore, android]
 published: true
-# publication_name: ncdc
+publication_name: ncdc
 ---
 
 タイトル通り、fastlane で GooglePlay の内部テストを配信できるようにしていきます。
@@ -117,8 +117,7 @@ https://docs.fastlane.tools/actions/upload_to_play_store/
 
 内部テストにアップロードする際の「リリース名」を、手動でアップロードする時と同じ形式にしたかったため、`local.properties`からバージョン名を取得する処理をいれました。
 
-見出し[「6.GooglePlay にアップロード」](#6googleplay-にアップロード)でも記載していますが、upload_to_play_store のデフォルト設定だとバージョン名だけ（ex. 0.1.0）となるため。
-→ 添付のように`ビルド番号（バージョン名）`としたかったため。
+`upload_to_play_store`のデフォルト設定だとバージョン名だけの表示（ex.`0.1.0`）となるので、添付のように`ビルド番号（バージョン名）`としたかったため。
 
 ![](https://storage.googleapis.com/zenn-user-upload/c04f1b54bbcd-20240507.png)
 
@@ -154,10 +153,10 @@ https://spin.atomicobject.com/version-fastlane/
 flutter コマンドを`sh`で実行します。
 
 **【補足】**
-fastlane のアクションの[gradle](https://docs.fastlane.tools/actions/gradle/)と、flutter コマンドのビルドとの違いがよく分からず。
+fastlane のアクションの[gradle](https://docs.fastlane.tools/actions/gradle/)と、flutter コマンドのビルドとの違いがよく分からず。。。
 
 `gradle`アクションだと`--dart-define-from-file`がうまく適用させることができなかったので、`sh`で flutter コマンドを実行するようにしました。
-うまいことやれば`gradle`アクションでも適用させれるるかもです。
+うまいことやれば`gradle`アクションでも適用させれるるかもです。。。
 
 ※ `--dart-define-from-file`は Flutter3.17 以降で非推奨（無効？廃止？）となっているので、今後は別の方法で対応する方がいいのかもしれない。（が、調べた感じベストプラクティスがまだ無さそう？）
 https://github.com/flutter/flutter/issues/138793
@@ -238,13 +237,15 @@ https://jonathancardoso.com/en/blog/automated-release-publish-deployment-react-n
   - assemble: **apk** ファイルを生成する
   - bundle: **aab** ファイルを生成する
 - `fastlane supply init`が実施しようとすると失敗する。
+
   - init するには本番リリースを一度は実施しておく必要がありそう？
   - 検証中は`fastlane supply init`せずとも構築できた（aab ファイルのアップロードだけなので、metadata とかを使用しなかった）ので、未解決。
   - 参考：
     - https://github.com/fastlane/fastlane/issues/21529
     - https://github.com/fastlane/fastlane/issues/21530
-- iOS の TestFlight に関しては、以下の記事参照。
-  - https://zenn.dev/ncdc/articles/fastlane_testflight
+
+TestFlight 版の fastlane 構築についても軽くまとめてます。よければ参考にしてください。
+https://zenn.dev/ncdc/articles/fastlane_testflight
 
 <br>
 <br>

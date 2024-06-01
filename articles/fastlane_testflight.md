@@ -188,8 +188,9 @@ build_app 関数は、Xcode で言う`Archive`実行に該当。
     ![](https://storage.googleapis.com/zenn-user-upload/13996d7b2b4c-20240507.png)
 
 - ios だけのリリースだと XcodeCloud でも良さそうだけど、android も fastlane 処理を組んでいるなら fastlane で統一した方がよいか。とかとか悩ましいところです。。。
-- android 版の fastlane 構築についても軽くまとめてますので、よければ参考にしてください。
-  https://zenn.dev/ncdc/articles/fastlane_googleplay
+
+android 版の fastlane 構築についても軽くまとめてます。よければ参考にしてください。
+https://zenn.dev/ncdc/articles/fastlane_googleplay
 
 <br>
 
