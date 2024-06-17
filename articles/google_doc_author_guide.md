@@ -1,9 +1,10 @@
 ---
-title: "Google Engineering Practices Documentationについて考える〜実装者ガイド〜"
+title: "Google Engineering Practices Documentationからコードレビューを考える〜実装者ガイド〜"
 emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [PR, github, codeReview, google]
 published: false
+# publication_name: ncdc
 ---
 
 # はじめに
