@@ -1,5 +1,5 @@
 ---
-title: "【Flutter】iOS のバックグラウンドタスクについて仕様調査"
+title: "【Flutter】iOS のバックグラウンドタスクについての仕様調査"
 emoji: "🔄"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, ios, BackgroundTask, background_fetch, background]
