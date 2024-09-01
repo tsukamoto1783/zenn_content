@@ -35,7 +35,7 @@ flutter でバックグラウンド時に定期処理を実行したくて、色
 | ライブラリ                                                                        | pub.dev<br>Star | pub.dev<br>最終更新 | Github<br>Star | Github<br>最終 Commit | Github<br>Issue | 感想                                                                                                             |
 | --------------------------------------------------------------------------------- | --------------- | ------------------- | -------------- | --------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [workmanager](https://pub.dev/packages/workmanager)                               | 2.0K            | 11 months ago       | 836            | 4 months ago          | 94              | Star 数は一番多いので実績はありそう。<br>ただ Issue を見る限り BugTag がやや多い印象。<br>更新頻度も高くはない。 |
-| [flutter_background_service](https://pub.dev/packages/flutter_background_service) | 1.2K            | 3 days ago          | 261            | 5 days ago            | 188             | 直近は更新が復活しているので、今後改善がすすむかも？<br>Issue が多いのが気になる。                               |
+| [flutter_background_service](https://pub.dev/packages/flutter_background_service) | 1.2K            | 3 days ago          | 261            | 5 days ago            | 188             | 直近は更新が復活しているので、今後改善が進むかも？<br>Issue が多いのが気になる。                                 |
 | [background_fetch](https://pub.dev/packages/background_fetch)                     | 1.1K            | 3 months ago        | 566            | 2 months ago          | 1               | 更新頻度もそこそこで、Issue がほぼ無いのがすごい。                                                               |
 
 <br>
@@ -173,14 +173,14 @@ Apple の Document には説明が少なくて完全には明記されてない�
 （この辺の仕様にはるかに詳しいライブラリの作者がそのように明記しているので尚更。）
 
 **結論として**、
-バックグラウンドタスクの実装はできるが、正確に意図通りに制御することは難しいということがわかりました。
+iOS でバックグラウンドタスクの実装はできるが、正確に意図通りに制御することは難しいということがわかりました。
 
 iOS のバックグラウンドタスクの仕様の解説については、下記の参考記事の方がより詳細に記載されているので、そちらも併せてご参照ください。
 
 <br>
 
 備考：
-どうしてもバックグラウンドでの定期処理が必要で、時間や頻度を制御したい場合は、background への移行を契機に`Timer` などで無理くり実装できるのか、、、？
+（どうしてもバックグラウンドでの定期処理が必要で、時間や頻度を制御したい場合は、background への移行を契機に`Timer` などで無理くり実装できるのか、、、？）
 
 <br>
 
