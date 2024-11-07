@@ -3,7 +3,7 @@ title: "【Flutter】Webviewに認証情報を渡す"
 emoji: "🔑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, webview, token, cookie]
-published: false
+published: true
 publication_name: ncdc
 ---
 
@@ -77,7 +77,7 @@ controller.runJavaScript("""
 """);
 ```
 
-上記の設定で、**android** で webview を表示すると、ダイアログが表示されてアクセストークンが保存されていることが確認できる。
+上記の設定で、**android** で webview を表示すると、ダイアログが表示されて認証情報が localStorage に保存されていることが確認できる。
 
 ![](https://storage.googleapis.com/zenn-user-upload/3ecf6832e89e-20241107.png =300x)
 
@@ -158,6 +158,9 @@ Webview で表示する際に cookie に証情情報を付与してみる。
 [webview_flutter](https://pub.dev/packages/webview_flutter) で定義されている`WebviewCookie`と`WebViewCookieManager`を使用。
 
 ```dart
+final accessToken = "your_access_token";
+// ...省略
+
 final controller = WebViewController();
 await controller.setJavaScriptMode(JavaScriptMode.unrestricted);
 await controller.loadRequest("url");
@@ -172,7 +175,8 @@ await WebViewCookieManager().setCookie(cookie);
 ```
 
 これだけで cookie の設定が完了。
-ただ、`WebViewCookieManager`では、`setCookie`と`clearCookies` ぐらいしか関数が提供されていないため、本当に設定されたかどうかが確認できない。
+ただ、`WebViewCookieManager`では、`setCookie()`と`clearCookies()` ぐらいしか関数が提供されていないため、本当に設定されたかどうかが確認できない。
+
 `.runJavaScript`で確認しようにも ios だと実行されないので。
 （android なら javascript の[document.cookie](https://developer.mozilla.org/ja/docs/Web/API/Document/cookie)で取得確認可能。）
 
