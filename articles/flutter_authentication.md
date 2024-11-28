@@ -3,7 +3,8 @@ title: "【Flutter】認証周りについてAuth0で色々と確認してみた
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, dart, OAuth2.0, Auth0, flutter_appauth]
-published: false
+published: true
+publication_name: ncdc
 ---
 
 [Auth0](https://auth0.com/jp) + [Postman](https://www.postman.com) + [flutter_appauth](https://pub.dev/packages/flutter_appauth) で OAuth2.0 を色々と確認しながら試してみました。

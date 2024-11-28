@@ -3,8 +3,8 @@ title: "Google Engineering Practices Documentationからコードレビューを
 emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [PR, github, codeReview, google]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 # はじめに
