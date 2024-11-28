@@ -190,8 +190,6 @@ defaultConfig {
     </intent-filter>
 ```
 
-<br>
-
 **【ios】**
 `info.plist`に scheme の設定を追加するのみ。
 
@@ -207,7 +205,7 @@ defaultConfig {
 <br>
 
 ※ 備考
-以下 Auth0 の Document から引用。
+以下 Auth0 のドキュメントから引用。
 今回はカスタムスキームでのコールバックとしているため、Auth0 側の設定は不要。
 Universal Links でコールバックする際は Auth0 のドキュメント（`<project>/Quickstart/Flutter`）に沿って設定が必要。
 
@@ -237,6 +235,59 @@ Flutter アプリで定義した`redirectUri`を`authsample://test/callback`に�
 
 アプリ上で取得する Token が確認できるように適当に Widget を追加。
 
+```dart
+const String clientId = '<Client ID>';
+const String clientSecret ='<Client Secret>';
+const String authorizationEndpoint ='<OAuth Authorization URL>';
+const String tokenEndpoint ='<OAuth Token URL>';
+const String redirectUri = 'authsample://test/callback'; // 変更
+
+// ...省略
+ElevatedButton(
+    onPressed: () async {
+      final result = await _login();
+      if (result != null) {
+        accessToken.value = result['accessToken'];
+        refreshToken.value = result['refreshToken'];
+      }
+    },
+    child: const Text('auth0 login'),
+),
+
+// ...省略
+Future _login() async {
+  try {
+    const FlutterAppAuth appAuth = FlutterAppAuth();
+
+    final AuthorizationTokenResponse? result =
+      await appAuth.authorizeAndExchangeCode(
+        AuthorizationTokenRequest(
+          clientId,
+          redirectUri,
+          clientSecret: clientSecret,
+          serviceConfiguration: const AuthorizationServiceConfiguration(
+            authorizationEndpoint: authorizationEndpoint,
+            tokenEndpoint: tokenEndpoint,
+          ),
+          scopes: ['openid', 'profile', 'email'], // 任意
+        ),
+      );
+
+    if (result != null) {
+      debugPrint('Access token: ${result.accessToken}\n');
+      debugPrint('Refresh token: ${result.refreshToken}\n');
+      return {
+        'accessToken': result.accessToken,
+        'refreshToken': result.refreshToken
+      };
+    }
+  } catch (e) {
+    print('Login error: $e');
+    return;
+  }
+}
+```
+
 上記の設定により、アプリ上で認証が成功すると、アプリに戻ってきてトークンを取得できることを確認。
 
 |                                        認証前                                        |                                        認証後                                        |
@@ -249,7 +300,7 @@ Flutter アプリで定義した`redirectUri`を`authsample://test/callback`に�
 
 android のデフォルトの package 名（applicationId） だと、`auth.sample.app.auth_sample_app` のような形式だが、これだと認証後にトークンが取得できず、以下のエラーに。（ここが いろんな Issue を調べても原因がわからずで沼った。。。）
 
-`PlatformException(null_intent, Failed to authorize: Null intent received, null, null)`
+> PlatformException(null_intent, Failed to authorize: Null intent received, null, null)
 
 id の形式を`auth.sample.app`に変更すると、認証後にトークンが取得できるようになった。
 
