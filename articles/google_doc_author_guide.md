@@ -1,5 +1,5 @@
 ---
-title: "Google Engineering Practices Documentationからコードレビューを考える〜実装者ガイド〜"
+title: "Google Engineering Practices Documentationからコードレビューを考える 〜実装者ガイド編〜"
 emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [PR, github, codeReview, google]
@@ -79,7 +79,7 @@ Google’s Code Review Guidelines
 
 <br>
 <br>
-「実装者ガイド」と「レビュワーガイド」の章があるが、まずは「実装者ガイド」から見ていく。
+「実装者ガイド」と「レビュワーガイド」の章があるが、**まずは「実装者ガイド」から見ていく。**
 
 # The CL author’s guide to getting through code review（PR 作成者のためのコードレビュー突破ガイド）
 
@@ -487,7 +487,6 @@ PR を書くのは大変な作業です。実装して PR を出すと、満足�
 
 # おわり
 
-実装者ガイドだけでも一読するのにそこそこの量がありますので、記事分けました。
+「実装者ガイド」と「レビュワーガイド」の章があるが、「実装者ガイド」だけでも一読するのにそこそこの量があるため、記事分けました。
 
-レビュワーガイド以下別途まとめました。
-[...作成中]()
+「レビュワーガイド」については、また別途記事にまとめる予定です。（仮）
