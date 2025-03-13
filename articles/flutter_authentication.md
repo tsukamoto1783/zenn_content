@@ -187,7 +187,11 @@ defaultConfig {
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="authsample" />
+        <data
+          android:scheme="authsample"
+          android:host="callback"
+          android:path="/"
+          />
     </intent-filter>
 ```
 
@@ -306,3 +310,11 @@ android のデフォルトの package 名（applicationId） だと、`auth.samp
 id の形式を`auth.sample.app`に変更すると、認証後にトークンが取得できるようになった。
 
 ※ ios だとデフォルトの形式`auth.sample.app.authSampleApp`でも問題なく動作した。
+
+<br>
+
+## 参照
+
+https://dev.classmethod.jp/articles/flutter-android-auth0/
+https://8vivid.net/whats-url-scheme/
+https://www.itmanage.co.jp/column/host-name/
