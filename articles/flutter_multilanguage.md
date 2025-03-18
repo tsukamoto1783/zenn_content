@@ -4,7 +4,7 @@ emoji: "🌎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, language, 多言語化]
 published: false
-publication_name: ncdc
+# publication_name: ncdc
 ---
 
 Flutter アプリの多言語対応について、動作確認しながら調査してみました。
