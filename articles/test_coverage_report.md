@@ -1,5 +1,5 @@
 ---
-title: "【Flutter】カバレッジ測定対象外のファイルもカバレッジレポートに含める方法"
+title: "カバレッジ測定対象外のファイルもカバレッジレポートに含めたい"
 emoji: "📊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, coverage, test, codecov]
@@ -7,9 +7,14 @@ published: false
 # publication_name: ncdc
 ---
 
+:::message
+本記事の test 部分は Flutter で書いてますが、カバレッジに関する内容なので、他の言語でも基本的な考え方は共通な認識です。
+jest などでも同様のことが検討できるかと思います。
+:::
+
 ## はじめに
 
-おなじみの`flutter test --coverage` コマンド。
+お馴染みの`flutter test --coverage` コマンド。
 デフォルトでは、`test/`配下のテストコードから、直接または間接的に参照されるファイルのみがカバレッジ計測対象となります。
 
 <br>
@@ -72,7 +77,7 @@ project(root)
 <br>
 
 「[Google Testing Blog / Code Coverage Best Practices](https://testing.googleblog.com/2020/08/code-coverage-best-practices.html)」 の記載内容を参考にすると、
-「**テストによる最低限の動作保証がされて"いない"のはどの部分なのか、が明らかになること**」が、カバレッジ測定の 1 つのメリットとのこと。
+「**テストによる最低限の動作保証がされて"いない"のはどの部分なのか、が明らかになること**」が、カバレッジ測定の 1 つのメリットだと読み取れます。
 
 > **In fact a lot of the value of code coverage data is to highlight not what’s covered, but what’s not covered.**
 
