@@ -136,8 +136,6 @@ https://pub.dev/packages/remove_from_coverage
 
 <br>
 
-### case3: 除外設定をした上で、カバレッジレポートを生成する
-
 （記事作成時の）2 日前に公開されたばかりのライブラリだが、こういったものもあるみたいなので、使い勝手次第では使ってみても良さそう。
 
 https://pub.dev/packages/discover
