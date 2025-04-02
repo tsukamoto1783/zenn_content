@@ -3,8 +3,8 @@ title: "【Flutter】カバレッジ測定対象外のファイルもカバレ�
 emoji: "📊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, coverage, test, codecov]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 ## はじめに
