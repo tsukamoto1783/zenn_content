@@ -3,8 +3,8 @@ title: "【Flutter】スマホのシステム言語設定に対応してWidget�
 emoji: "🌎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, language, 多言語化]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 Flutter アプリの多言語対応について、動作確認しながら調査してみました。
@@ -345,7 +345,7 @@ _↑ カレンダー部分だけベトナム語。_
 
 続いて、コンテンツ（Text）を含めて多言語化対応する場合を想定してみます。
 
-基本的には、上記の「パターン１」のような Widget だけを多言語化のターゲットにすることは珍しいので、こちらの対応になるかと思います。
+基本的には、上記の「多言語化対応-１」のような Widget だけを多言語化のターゲットにすることは珍しいので、こちらの対応になるかと思います。
 
 対応手順の詳細は[公式ドキュメント](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)を参照してください。
 
