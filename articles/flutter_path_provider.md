@@ -3,8 +3,8 @@ title: "【Flutter】アプリ内ストレージに書き込んだファイル�
 emoji: "💾"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [flutter, dart, pathProvider, storage]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 [path_provider](https://pub.dev/packages/path_provider)ライブラリで、アプリ内ストレージにファイルを保存する際、
@@ -26,9 +26,10 @@ await file.writeAsString('ログの内容');
 
 `path_provider`は、ファイルシステム上でよく使われる path を見つけるためのライブラリです。
 
-OS によって使用できる関数があることは注意ポイントです。
+OS によって使用できる関数があることは注意が必要です。
 
 ![](https://storage.googleapis.com/zenn-user-upload/4f48cd55013d-20250403.png)
+_path_provider の readme から引用_
 
 <br>
 
@@ -36,13 +37,13 @@ OS によって使用できる関数があることは注意ポイントです�
 
 ２つの関数の実行結果を例に見ていきます。
 
-- getApplicationDocumentsDirectory()：`/data/user/0/<packageName>/app_flutter`
-- getDownloadsDirectory()：`/storage/emulated/0/Android/data/<packageName>/files/downloads`
+- getApplicationDocumentsDirectory() => `/data/user/0/<packageName>/app_flutter`
+- getDownloadsDirectory() => `/storage/emulated/0/Android/data/<packageName>/files/downloads`
 
 内部ストレージか外部ストレージかの違いはあるが、両者はどちらも`アプリ専門領域`であり、ユーザーからは見えません。（アクセスできません。）
 ※ （内部か外部かで、制限や容量などは若干異なりますが、ここでは割愛します。）
 
-上記の "アプリ専用領域" に関しては、Android の場合は `AndroidStudio` を使用すれば確認することができます。
+上記の `アプリ専用領域` に関しては、Android の場合は `AndroidStudio` を使用すれば確認することができます。
 
 確認方法の手順は以下です。
 
@@ -69,12 +70,12 @@ await file.writeAsString('ログの内容');
 
 Android と同様に、２つの関数の実行結果を例に見ていきます。
 
-- getApplicationDocumentsDirectory()：`/var/mobile/Containers/Data/Application/<AppId>/Documents`
-- getDownloadsDirectory()：`/var/mobile/Containers/Data/Application/<AppId>/Downloads`
+- getApplicationDocumentsDirectory() => `/var/mobile/Containers/Data/Application/<AppId>/Documents`
+- getDownloadsDirectory() => `/var/mobile/Containers/Data/Application/<AppId>/Downloads`
 
 Android 同様、これらはどちらも`アプリ専門領域`であり、ユーザーからは見えません（アクセスできません）。
 
-上記の "アプリ専用領域" に関しては、シミュレーターであれば、`Finder` から確認することができます。
+上記の `アプリ専用領域` に関しては、シミュレーターであれば、`Finder` から確認することができます。
 
 確認できるパスは以下です。
 `/Users/<user>/Library/Developer/CoreSimulator/Devices/<DeviceID>/data/Containers/Data/Application/<AppID>/`
@@ -98,7 +99,7 @@ iPhone で `ファイル` アプリから確認ができるようになります
 
 ## 備考
 
-- Android の `Files` アプリで表示される「内部ストレージ」画面のディレクトリ名は、`/sdcard/`です。（"SD カード" もあるのでややこしい、、、）
+- Android の `Files` アプリで表示される「内部ストレージ」画面のディレクトリ名は、`/sdcard/`です。（Android は"SD カード" もあるのでややこしいですが、、、）
   「仮想 SD カード ≒ 内部ストレージ ≒ /sdcard」
   ![](https://storage.googleapis.com/zenn-user-upload/f5e0bca5a299-20250403.png =300x)
 
