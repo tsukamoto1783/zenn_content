@@ -223,7 +223,18 @@ project
 <br>
 
 ## その他ポイント
-### fastlane matchをコマンド実行するのと、Fastfile内でAPI Keyを指定して実行する違いは？
+
+### match で取得した Profile はどこに保存される？
+
+- 〜Xcode15
+  - `~/Library/MobileDevice/Provisioning Profiles`
+- Xcode16〜
+  - `~/Library/Developer/Xcode/UserData/Provisioning Profiles`
+
+<br>
+
+### fastlane match をコマンド実行するのと、Fastfile 内で API Key を指定して実行する違いは？
+
 - コマンド実行
   - Appfileに記載のApple IDで実行/作成される。
   - 証明書やProfileの作成に**2ファクタ認証が発生する。**
@@ -281,6 +292,17 @@ Apple DeveloperのIdentifierだけ生成したい場合は、`--skip_itc`オプ�
 
 もし、複数のチームのCertificate（証明書）を同じリポジトリで管理したい場合は、fastlaneのブランチ機能を使って切り替えれるとの記載はあるので試してみてください。[fastlane docs/match/Multiple teams](https://docs.fastlane.tools/actions/match/)
 （組織ごとに管理リポジトリを新たに立てる方法も考えられそう。）
+
+【追記・備考】
+
+- Profiles に関して、"github 上の Profile の命名"は、自動生成時も import 時も同じみたい。import 時のローカルのファイル名は関係なく、import した際は`<Type>_<BundleID>.mobileprovision`という名前で保存される。
+  - そのため、Profile の更新（同じ Type と BundleID）であれば、期限切れの古いファイルを github 上から消してから import する必要はなさそう。上書きされるため。
+- Certs に関しては、import する際はローカルのファイル名がそのまま github 上に反映される。自動生成の Certificate は`<10桁文字列>.cer or ,p12`となる。
+  - そのため、import で更新する際は、同じ命名とすれば上書きされる。違う名前にする場合は、古いファイルを消してから import する必要あり。
+- `import` の OptionParameter は存在しない。`match` コマンドの OptionParameter を import の後ろに使用。
+- import 実行時に`--type`を明示的に指定しないと、証明書の Type と一致しないフォルダ階層に保存されること注意。
+  - ex.) `fastlane match import --type <appstoreなどの証明書type> --skip_certificate_matching true`
+- 詳細は[match のドキュメント](https://docs.fastlane.tools/actions/match/)を参照ください。
 
 <br>
 
