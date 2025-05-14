@@ -295,11 +295,14 @@ Apple DeveloperのIdentifierだけ生成したい場合は、`--skip_itc`オプ�
 
 【追記・備考】
 
-- Profiles に関して、"github 上の Profile の命名"は、自動生成時も import 時も同じみたい。import 時のローカルのファイル名は関係なく、import した際は`<Type>_<BundleID>.mobileprovision`という名前で保存される。
-  - そのため、Profile の更新（同じ Type と BundleID）であれば、期限切れの古いファイルを github 上から消してから import する必要はなさそう。上書きされるため。
-- Certs に関しては、import する際はローカルのファイル名がそのまま github 上に反映される。自動生成の Certificate は`<10桁文字列>.cer or ,p12`となる。
-  - そのため、import で更新する際は、同じ命名とすれば上書きされる。違う名前にする場合は、古いファイルを消してから import する必要あり。
-- `import` の OptionParameter は存在しない。`match` コマンドの OptionParameter を import の後ろに使用。
+- Profiles に関して、"github 上の Profile の命名"は、自動生成時も import 時も同じ。
+  import 時のローカルのファイル名は関係なく、import した際は`<Type>_<BundleID>.mobileprovision`という名前で保存される。
+  - そのため、Profile の更新（同じ Type と BundleID）であれば、期限切れの古いファイルを github 上から消してから import する必要はなし。上書きされるため。
+- Certs に関しては、import する際はローカルのファイル名がそのまま github 上に反映される。
+  自動生成の証明書は`<10桁文字列>.cer or ,p12`となる。
+  - そのため、import で更新する際は、同じ命名とすれば上書きされる。
+    違う名前にする場合は、古いファイルを消してから import する必要あり。
+- `import` の OptionParameter は存在しない。`match` コマンドの OptionParameter を使用。
 - import 実行時に`--type`を明示的に指定しないと、証明書の Type と一致しないフォルダ階層に保存されること注意。
   - ex.) `fastlane match import --type <appstoreなどの証明書type> --skip_certificate_matching true`
 - 詳細は[match のドキュメント](https://docs.fastlane.tools/actions/match/)を参照ください。
