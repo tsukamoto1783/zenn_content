@@ -305,6 +305,7 @@ Apple DeveloperのIdentifierだけ生成したい場合は、`--skip_itc`オプ�
 - `import` の OptionParameter は存在しない。`match` コマンドの OptionParameter を使用。
 - import 実行時に`--type`を明示的に指定しないと、証明書の Type と一致しないフォルダ階層に保存されること注意。
   - ex.) `fastlane match import --type <appstoreなどの証明書type> --skip_certificate_matching true`
+  - ref:https://jasmine-elamblakatt.medium.com/import-existing-certificate-and-profiles-to-match-and-configure-fastlane-for-multiple-targets-836bb46e1d06
 - 詳細は[match のドキュメント](https://docs.fastlane.tools/actions/match/)を参照ください。
 
 <br>
