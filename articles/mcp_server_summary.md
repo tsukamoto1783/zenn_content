@@ -1,5 +1,5 @@
 ---
-title: "MCP とは？ 〜とりあえず全体の概要を抑えたいよって方へ〜"
+title: "MCP とは？ 〜とりあえず全体の概要を抑えたい方へ〜"
 emoji: "🤔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [MCP, ai, 生成AI, MCPサーバー]
@@ -12,7 +12,7 @@ MCP について、
 - 技術職ではないので詳細な技術的な話はよくわからないが、流行り・一般教養として概要を抑えたい。
 - エンジニアだけど流行りに乗り遅れて MCP についてよく分かっていない。
 
-そんな方に向けて、MCP についての概要を説明していきます。
+そんな方に向けて、MCP についての概要を記載していきます。
 
 ::::message  
 NOTE
@@ -93,8 +93,8 @@ participant model as AIモデル(LLM)
 participant slack as Slack
 participant github as GitHub
 
-app ->> model: 「現在の天気を教えて」と質問
-model -->> app: 適当な天気 or わかりません と回答
+app ->> model: 「現在の天気を教えて」
+model -->> app: 「適当な天気 or わかりません」と回答
 app ->> slack: SlackAPIを用いてSlackに通知
 app ->> github: GitHubAPI を用いてGitHubの Issue に記載
 ```
@@ -115,6 +115,8 @@ MCP サーバーとしては、Slack、GitHub の MCP サーバーを設定し�
 
 以下、アプリの流れのイメージです。
 
+※ 表示の関係上、MCP サーバー部分の表記は Weather だけとして、Slack と GitHub の MCP サーバーの表現は割愛しています。
+
 ```mermaid
 sequenceDiagram
 autonumber
@@ -122,17 +124,15 @@ participant app as チャットアプリ
 participant ai as AIモデル
 participant weatherServer as Weather MCPサーバー
 participant weather as Weather
-participant slackServer as Slack MCPサーバー
 participant slack as Slack
-participant githubServer as GitHub MCPサーバー
 participant github as GitHub
 
-app ->> ai: 「現在の天気を教えて」と質問
+app ->> ai: 「現在の天気を教えて」
 ai ->> weather: MCPサーバー経由で、天気情報を取得
 weather -->> ai: 返却
-ai ->> slack: 取得した天気情報を元に、MCPサーバー経由で、Slackへ通知
-ai ->> github: 取得した天気情報を元に、MCPサーバー経由で、GitHubの Issue に記載
-ai -->> app: 質問に対する回答を生成し、処理終了
+ai ->> slack: MCPサーバー経由(図の表記割愛)で、Slackへ通知
+ai ->> github: MCPサーバー経由(図の表記割愛)で、GitHubの Issue に記載
+ai -->> app: 回答を生成して返却
 ```
 
 1. 「現在の天気を教えて。そして回答内容を Slack と Github の Issue に記録して」と依頼します。
@@ -251,3 +251,7 @@ Agent 機能が外部の API ドキュメントを MCP サーバー経由で取�
 - [AI エージェント時代を変える「MCP」とは？その可能性と活用法](https://note.com/gabc/n/n9d3b8e852d34)
 
 :::
+
+```
+
+```
