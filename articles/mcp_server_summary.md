@@ -3,7 +3,7 @@ title: "MCP とは？ 〜とりあえず全体の概要を抑えたい方へ〜"
 emoji: "🤔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [MCP, ai, 生成AI, MCPサーバー]
-published: false
+published: true
 publication_name: ncdc
 ---
 
