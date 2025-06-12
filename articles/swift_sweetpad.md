@@ -3,7 +3,7 @@ title: "【Swift】VSCodeやCursorで快適なSwift開発ライフを送りた�
 emoji: "🐦️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [swift, vscode, cursor, sweetpad, xcode]
-published: false
+published: true
 publication_name: ncdc
 ---
 
@@ -21,14 +21,14 @@ https://sweetpad.hyzyla.dev/
 
 <br>
 
-# 検証時の動作環境
+## 検証時の動作環境
 
 - Xcode 16.2
 - SweetPad 0.1.66
 
 <br>
 
-# SweetPad とは
+## SweetPad とは
 
 SweetPad とは、VSCode または Cursor を使用して、 Swift プロジェクトを開発できるようにする拡張機能です。
 Xcode の代替手段を目指して開発されている拡張機能みたいです。
@@ -48,19 +48,19 @@ SweetPad を用いることで実現可能となる機能は以下です。（�
 - 🛠️ **Tools** — `Homebrew` を使用して重要な iOS 開発ツールを管理します
 - ✅ **Tests** — シミュレータとデバイスでテストを実行する
 
-どれも設定も簡単なのも嬉しいポイントです。
+どれも設定が簡単なのも嬉しいポイントです。
 使用条件としては、「MacOS であること」と「Xcode がインストールされていること」が必要となります。
 
 <br>
 
-# 基本設定
+## 基本設定
 
 基本的には、以下２つの拡張機能をインストールするだけで OK です。
 
 - [SweetPad](https://marketplace.visualstudio.com/items?itemName=sweetpad.sweetpad)
 - [Swift](https://marketplace.visualstudio.com/items?itemName=swiftlang.swift-vscode)
 
-SweetPad のインストール後、🍬 アイコンを選択すると、３つのメニューが表示されます。
+SweetPad のインストール後、🍬アイコンを選択すると、３つのメニューが表示されます。
 
 - **BUILD**
   - ビルド対象一覧
@@ -75,7 +75,7 @@ SweetPad のインストール後、🍬 アイコンを選択すると、３つ
 
 以降、各機能について詳細に見ていきます。
 
-# ✅ [AutoComplete](https://sweetpad.hyzyla.dev/docs/autocomplete)
+## ✅ [AutoComplete](https://sweetpad.hyzyla.dev/docs/autocomplete)
 
 VSCode でも Xcode のように補完や参照がされるようになります。
 こちらを有効化することで、エラーだらけの真っ赤な VSCode 画面が解消されます。
@@ -108,7 +108,7 @@ VSCode でも Xcode のように補完や参照がされるようになります
 
 <br>
 
-# 🛠️ [Build & Run](https://sweetpad.hyzyla.dev/docs/build)
+## 🛠️ [Build & Run](https://sweetpad.hyzyla.dev/docs/build)
 
 `xcodebuild`を使用して、VSCode から直接ビルドして実行することができます。
 また、TOOLS の`xcbeautify`を有効化して使用することがオススメされています。
@@ -131,7 +131,7 @@ VSCode でも Xcode のように補完や参照がされるようになります
 
 <br>
 
-# 🪲 [Debug](https://sweetpad.hyzyla.dev/docs/debug)
+## 🪲 [Debug](https://sweetpad.hyzyla.dev/docs/debug)
 
 VSCode のデバッグ機能を使用して、iOS アプリケーションのデバッグ実行が可能となります。
 Flutter などではお馴染みの F5 キー 実行によるデバッグ機能が使えます。
@@ -151,7 +151,7 @@ Flutter などではお馴染みの F5 キー 実行によるデバッグ機能�
 
 <br>
 
-# 💅🏼 [Format](https://sweetpad.hyzyla.dev/docs/format)
+## 💅🏼 [Format](https://sweetpad.hyzyla.dev/docs/format)
 
 `settings.json` で設定した format を使用して、Swift ファイルを自動フォーマットすることができます。
 
@@ -168,7 +168,7 @@ SweetPad では Apple 純正の[swift-format](https://github.com/swiftlang/swift
 
 <br>
 
-# 📱 [Simulator & Devices（DESTINATIONS）](https://sweetpad.hyzyla.dev/docs/destinations)
+## 📱 [Simulator & Devices（DESTINATIONS）](https://sweetpad.hyzyla.dev/docs/destinations)
 
 SweetPad では、iOS シミュレータや実機デバイスを簡単に管理することができます。
 SweetPad では、特定のシミュレータや接続されたデバイスなど、アプリを実行できるデバイスのことを「Destination」と呼ぶようです。
