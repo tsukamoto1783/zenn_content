@@ -208,6 +208,12 @@ Flutter などではお馴染みの F5 キー 実行によるデバッグ機能�
 
 ![](https://storage.googleapis.com/zenn-user-upload/45fd38b53536-20250613.png)
 
+**【追記】**
+
+- ブレークポイントを貼っても変数の中身が見れないのが残念ポイント。。。
+  ref: [Debug variables not shown #148](https://github.com/sweetpad-dev/sweetpad/issues/148)
+- ただ、実行時間は Xcode から実行するよりもかなり短い印象（体感）。
+
 **【備考】**
 
 - **[LLDB](https://lldb.llvm.org/)**
