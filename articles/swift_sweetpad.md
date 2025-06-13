@@ -80,11 +80,44 @@ SweetPad のインストール後、🍬アイコンを選択すると、３つ�
 VSCode でも Xcode のように補完や参照がされるようになります。
 こちらを有効化することで、エラーだらけの真っ赤な VSCode 画面が解消されます。
 
+設定はとても簡単で、以下を実行するだけです。
+
 1. TOOLS から`xcode-build-sever`をインストール
 2. コマンド パレットからコマンド `SweetPad: Generate Build Server Config（buildServer.json）` を実行し、設定ファイルを作成。（生成された設定ファイルは特にいじらなくて OK）
 3. 一度 build を実行すると、設定ファイルが反映されて補完機能等が有効に
 
 ![](https://storage.googleapis.com/zenn-user-upload/1a7a309f0386-20250612.png =500x)
+
+**【buildServer.json の運用についての検討】**
+チーム開発の際は、`buildServer.json`をどのように運用するかの検討が必要です。
+
+`buildServer.json` の中身は以下のような内容となっています。
+
+`workspace`は共通なので、`./<***>.xcworkspace`と変更すればよさそうですが、`build_root`が悩ましいところです。
+`build_root`の指定先を変えればチームで共有できますが、そもそも Path を変更しても影響が無いものなのかが微妙なので、ひとまずはメンバー各々に`buildServer.json`生成してもらう方向で考えています。（生成はコマンド１つで一瞬なので）
+→ 時間がある時にこの辺の検証は、もう少ししてみたいと思います。
+
+```json: buildServer.json
+{
+	"name": "xcode build server",
+	"version": "0.2",
+	"bspVersion": "2.0",
+	"languages": [
+		"c",
+		"cpp",
+		"objective-c",
+		"objective-cpp",
+		"swift"
+	],
+	"argv": [
+		"/opt/homebrew/bin/xcode-build-server"
+	],
+	"workspace": "/<UserPath>/<PJName>/<***>.xcworkspace",
+	"build_root": "/<UserPath>/Library/Developer/Xcode/DerivedData/<***>-<hash>",
+	"scheme": "<ShemeName>",
+	"kind": "xcode"
+}
+```
 
 **【備考】**
 
@@ -138,8 +171,42 @@ Flutter などではお馴染みの F5 キー 実行によるデバッグ機能�
 
 ![](https://storage.googleapis.com/zenn-user-upload/cf4e9d22785d-20250612.png)
 
-ひとまずは、生成された`launch.json` の設定をそのまま使用すれば、デバッグ実行が可能です。
-実行環境や実行モードを切り替えて実行したい場合などは、適宜[ドキュメント](https://sweetpad.hyzyla.dev/docs/debug)を参照に`launch.json`を編集してください。
+上記の通り`launch.json`を生成すると、以下のような設定が生成されます。
+
+```json: launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "sweetpad-lldb",
+      "request": "attach",
+      "name": "SweetPad: Build and Run (Wait for debugger)",
+      "preLaunchTask": "sweetpad: debuging-launch"
+    }
+  ]
+}
+```
+
+このまま実行すると preLaunchTask の`sweetpad: debuging-launch`が見つかりません。とエラーが出てしまうので、ドキュメントの設定内容をコピペします。（デフォルトで設定しておいて欲しい所ではありますが、、、）
+
+```json: tasks.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "sweetpad-lldb",
+      "request": "attach",
+      "name": "Attach to running app (SweetPad)", // nameは何でもOKです
+      "preLaunchTask": "sweetpad: launch" // ここを変更
+    }
+  ]
+}
+```
+
+ドキュメントの設定内容に差し替え、デバッグ実行を実施すると、正常に動作するようになりました。
+実行環境や実行モードを切り替えて実行したい場合などは、適宜[ドキュメント](https://sweetpad.hyzyla.dev/docs/debug)を参照に`tasks.json`や`launch.json`に設定を追記してください。
+
+![](https://storage.googleapis.com/zenn-user-upload/45fd38b53536-20250613.png)
 
 **【備考】**
 
