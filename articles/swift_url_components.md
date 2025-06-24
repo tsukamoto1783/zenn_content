@@ -3,8 +3,8 @@ title: "【Swift】URLComponentsのqueryにパーセントエンコード済み�
 emoji: "📤"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Swift, URLComponents, URL, percentEncode, encode]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 # 問題
@@ -220,7 +220,6 @@ func createURL() -> URL {
 ```txt
 🐛components.percentEncodedQueryItems: [date=2025/01/01, id=22, text=%E3%81%82%E3%81%84/%E3%81%86/%20/%E3%81%88+%E3%81%8A-%25]
 🐛componentsUrl: https://example.com?date=2025%2F01%2F01&id=22&text=%E3%81%82%E3%81%84%2F%E3%81%86%2F%20%2F%E3%81%88%2B%E3%81%8A-%25
-
 ```
 
 <br>
