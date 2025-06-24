@@ -9,8 +9,9 @@ published: false
 
 # 問題
 
-[URLComponents](https://developer.apple.com/documentation/foundation/urlcomponents) を使って [URL](https://developer.apple.com/documentation/foundation/url) を生成する際、query にパーセントエンコード済みの文字列を渡したが、思った通りの挙動にならず。
-出力結果を確認すると、URL を生成する際に、 **URLComponents が自動的にパーセントエンコードを行っており、意図しない文字列（2 重エンコード）となってしまっていました。**
+[URLComponents](https://developer.apple.com/documentation/foundation/urlcomponents) を使って [URL](https://developer.apple.com/documentation/foundation/url) を生成する際、クエリパラメータにパーセントエンコード済みの文字列を渡すと、意図せず 二重エンコードされてしまいます。
+
+コンソールで確認してみると、URL を生成する際に **URLComponents が自動的にパーセントエンコードを行っており、意図しない文字列（2 重エンコード）となってしまっていました。**
 
 ex.
 `/` → `%2F` → `%252F`
@@ -128,7 +129,7 @@ func createURL() -> URL {
 
 上記のサンプルでは、`あい/う/ /え+お-%`という文字列は、`%E3%81%82%E3%81%84/%E3%81%86/%20/%E3%81%88+%E3%81%8A-%25`にエンコードされました。
 
-`/ + -`の記号はそのまま表示され、`<空白> %`はエンコードされている違いがあります。
+`/ +`の記号はそのまま表示され、`<空白> %`はエンコードされている違いがあります。
 こちらの違いについては、`RFC 3986`の規定に基づいています。
 
 <br>
@@ -179,13 +180,14 @@ https://tex2e.github.io/rfc-translater/html/rfc3986.html
 上記で見た通り、URLComponents では、文字列内に含まれる予約文字についても意味のある文字だと認識して、エンコードしてくれません。
 
 なので、先にクエリの文字列をエンコードしてから、URLComponents にセットする方法も１つです。
+文字列に対するエンコード処理は、[addingPercentEncoding(withAllowedCharacters:)](<https://developer.apple.com/documentation/foundation/nsstring/addingpercentencoding(withallowedcharacters:)>)で行うことができます。
 
 ```swift
 extension String {
     func strictQueryEncoded() -> String? {
         // urlQueryAllowedから '+' や '/' などを除外します。
         var customQueryAllowed = CharacterSet.urlQueryAllowed
-        customQueryAllowed.remove(charactersIn: "-+/")
+        customQueryAllowed.remove(charactersIn: "+/")
 
         // カスタムの CharacterSet を使用して文字列をエンコードします。
         return self.addingPercentEncoding(withAllowedCharacters: customQueryAllowed)
@@ -217,7 +219,7 @@ func createURL() -> URL {
 
 ```txt
 🐛components.percentEncodedQueryItems: [date=2025/01/01, id=22, text=%E3%81%82%E3%81%84/%E3%81%86/%20/%E3%81%88+%E3%81%8A-%25]
-🐛componentsUrl: https://example.com?date=2025%2F01%2F01&id=22&text=%E3%81%82%E3%81%84%2F%E3%81%86%2F%20%2F%E3%81%88%2B%E3%81%8A%2D%25
+🐛componentsUrl: https://example.com?date=2025%2F01%2F01&id=22&text=%E3%81%82%E3%81%84%2F%E3%81%86%2F%20%2F%E3%81%88%2B%E3%81%8A-%25
 
 ```
 
@@ -266,9 +268,9 @@ func createURL() -> URL {
 
 <br>
 
-2.URL オブジェクトを使用した場合、原因がよく分からないが、挙動にやや違いが発生。
+2.URL オブジェクトを使用した場合、挙動に差異が発生。
 
-以下のような基本な URL オブジェクトを生成すると、2 重エンコードが発生しなかった。
+以下のような基本な URL オブジェクトを生成すると、二重エンコードは発生しませんでした。
 
 ```swift
 func onPressed() {
@@ -297,7 +299,8 @@ func createURL() -> URL {
 
 <br>
 
-しかし、parameters に Base64 の画像文字列のような長い文字列をセットすると、URLComponents の挙動と同じように、2 重エンコードされてしまった。
+しかし、parameters に Base64 の画像文字列のような長い文字列をセットすると、URLComponents の挙動と同じように、二重エンコードが発生してしまいます。
+（原因不明 & 詳細は未調査）
 
 ```swift
 func onPressed() {
@@ -339,9 +342,7 @@ iVBORw0KGgoAAAANSUhEUgAAAGAAAAA4CAYAAAACRf2iAAABXGlDQ1BJQ0MgUHJvZmlsZQAAKJF1kLtL
 🐞created URL: https://example.com/api?text=aa%252Baa%253Daa%2525&date=2025%252F01%252F01&id=22&image=iVBO...Uxn%252BWFYh...Tz6G%252FoJ...
 ```
 
-#
-
-参考記事
+# 参考記事
 
 :::details 【参考記事】
 https://medium.com/ios-ic-weekly/the-problem-of-percent-encoding-on-ios-ebadd39e8b6f
