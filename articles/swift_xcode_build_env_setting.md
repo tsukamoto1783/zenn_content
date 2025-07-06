@@ -3,7 +3,8 @@ title: "【Swift】実行環境毎に異なる設定値を指定したい"
 emoji: "🍣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Swift, Xcode, iOS]
-published: false
+published: true
+publication_name: ncdc
 ---
 
 Xcode の Configuration 設定にて、Debug と Release とで BundleID やアイコン等、異なる値を設定する手順を記載&メモしていきます。
