@@ -3,7 +3,7 @@ title: "【Flutter】QRコードを生成して表示する"
 emoji: "🎼"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, Dart, QRコード, PrettyQrCode, QR]
-published: false
+published: true
 publication_name: ncdc
 ---
 
