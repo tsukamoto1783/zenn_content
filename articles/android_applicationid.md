@@ -175,7 +175,7 @@ https://kotlinlang.org/docs/coding-conventions.html#source-code-organization
 
 <br>
 
-### 7. ドキュメントファイルの記載などの修正 + 修正漏れチェック
+### 7. ドキュメントファイルの修正 + 修正漏れチェック
 
 上記の Rename 処理は、.md ファイルなどのドキュメントファイル内の記載は変更してくれません。（import などのひも付きとかは無いので。）
 また、同様に他の設定ファイルについても、漏れがないか確認します。
