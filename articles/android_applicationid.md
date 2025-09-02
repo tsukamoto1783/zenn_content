@@ -3,8 +3,8 @@ title: "【Android】cloneアプリのapplicationIdなどを変更して別ア�
 emoji: "🏷️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Android, Kotlin, java, AndroidStudio, applicationId]
-published: false
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 Android アプリ開発において、既存プロジェクトやテンプレートプロジェクトを clone して流用したい場面があると思います。
@@ -108,11 +108,11 @@ https://medium.com/@MahabubKarim/understanding-namespace-and-applicationid-in-an
 
 Android Studio のウィンドウ上部に表示されるプロジェクト名にもなります。
 
-必ず`applicationId`と同じ値にする必要はありませんが、たいたい似たような名前にすることが多いかとは思います。
+必ず`applicationId`と同じ値にする必要はありませんが、たいたい似たような名前にすることが多いかと思います。
 
 VSCode で`settings.gradle.kts`を開き、今回は`SampleNewApp`として変更します。
 
-```diff: kts
+```diff: settings.gradle.kts
 - rootProject.name = "com-example-testApp"
 + rootProject.name = "SampleNewApp"
 ```
@@ -122,7 +122,7 @@ VSCode で`settings.gradle.kts`を開き、今回は`SampleNewApp`として変�
 ### 4. アプリ名（app_name）
 
 Android 端末にインストールされたアプリアイコンの下に表示されるアプリ名を変更します。
-こちらは、`res/values/strings.xml`に定義されている`app_name`を変更します。
+`res/values/strings.xml`に定義されている`app_name`を変更します。
 
 ```diff: string.xml
 -    <string name="app_name">com-example-testApp</string>
@@ -150,7 +150,7 @@ Android 端末にインストールされたアプリアイコンの下に表示
 
 <br>
 
-### 6. ディレクトリ構造を修正する
+### 6. ディレクトリ構造の修正
 
 `namespace`にあわせて、アプリのディレクトリ構造を修正します。
 こちらの修正は AndroidStudio 上の機能で修正したいと思います。
@@ -202,9 +202,9 @@ VSCode の検索で、変更前の applicationId や rootProject.name、ディ�
 他記事や過去記事でよく目にする `package名` について。
 
 以前は、`AndroidManifest.xml`にて手動で`package`プロパティを指定する必要がありました。
-しかし、「AGP（Android Gradle Plugin）: 8.0」以降、手動設定が廃止され、ビルド後に`applicationId`が自動で`package`に設定されるようになっているみたいです。
+しかし、「AGP（Android Gradle Plugin）: 8.0」以降、手動設定が廃止され、ビルド後に`applicationId`が自動で`package`に設定されるようになったみたいです。
 
-なので、大まかには `package名` ≒ `applicationId` という認識で良いかと思います。
+なので、大まかには 「`package名` ≒ `applicationId`」 という認識で良いかと思っています。
 
 https://developer.android.com/build/configure-app-module
 https://developer.android.com/build/releases/past-releases/agp-8-0-0-release-notes
