@@ -3,8 +3,8 @@ title: "【Android/iOS】AR機能についての基礎知識"
 emoji: "👓"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Android, ARCore, AR, iOS, ARKit]
-# published: true
-# publication_name: ncdc
+published: true
+publication_name: ncdc
 ---
 
 **AR：拡張現実（Augmented Reality）**
@@ -258,11 +258,11 @@ AR 機能は Unity 側で実装することになるため、ネイティブア�
   - モーショントラッキングや環境認識といった AR の基盤・土台となる機能を提供
 - **SceneView(Android) / RealityKit(iOS)**
   - 上記の基盤上に 3D コンテンツを描画・レンダリングするための技術(ツール)
-    - **SceneView**
-      シンプルな 3D モデル表示に特化した OSS ライブラリ
-      OSS ライブラリなので、今後コミュニティが衰退したり、他の有力ライブラリが出てきたリする懸念は多少あり
-    - **RealityKit**
-      物理演算やアニメーションなど高度な表現が可能な iOS 公式フレームワーク
+  - **SceneView**
+    シンプルな 3D モデル表示に特化した OSS ライブラリ
+    OSS ライブラリなので、今後コミュニティが衰退したり、他の有力ライブラリが出てきたリする懸念は多少あり
+  - **RealityKit**
+    物理演算やアニメーションなど高度な表現が可能な iOS 公式フレームワーク
 - **Scene Viewer(Android) / AR Quick Look(iOS)**
   - 端末標準搭載の機能であり、フル機能の AR アプリを開発せずに手軽に AR 体験を提供したい場合に有効
 - **Unity**
