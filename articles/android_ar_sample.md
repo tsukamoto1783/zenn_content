@@ -1,9 +1,10 @@
 ---
-title: "【Android】AR機能を色々なパターンで試してみる"
-emoji: "📝"
+title: "【Android/Kotlin】AR機能を色々なパターンで試してみる"
+emoji: "🌎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Android, ARCore, AR, SceneView, SceneViewer]
-published: false
+published: true
+publication_name: ncdc
 ---
 
 ## はじめに
@@ -290,9 +291,9 @@ https://unity.com/ja/features/unity-as-a-library
 
 Unity についてはあまり詳しくないので、先人の知恵(記事)を参考にしつつ、とりあえずの動作確認はできました。
 
-→ ここだけでかなりの量になったので、別記事に切り出しました。
+→ ここだけで結構の量になったので、別記事に切り出しました。
 
-Coming soon...
+<作成中...>
 
 <br>
 
