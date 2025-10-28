@@ -60,6 +60,8 @@ https://developer.apple.com/jp/augmented-reality/arkit/
 - **対応デバイス**
   - ARCore は幅広い Android デバイスに対応 / ARKit は iOS デバイスに限定
     → リーチできるユーザー数に影響
+- **Geospatial**
+  - ARCore は、 GoogleMap 系の API を用いた AR 機能が強み
 - **ハイスペック端末の機能**
 
   - Android: 飛行時間（ToF）ハードウェア深度センサー搭載の端末
@@ -283,4 +285,6 @@ AR 機能は Unity 側で実装することになるため、ネイティブア�
 https://press.monaca.io/atsushi/20234
 https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models-showcase.md
 https://tech.cygames.co.jp/archives/3597/
+https://crexgroup.com/ja/xr/ar/what-is-arcore/
+https://crexgroup.com/ja/xr/ar/arkit-getting-started-guide/
 :::
