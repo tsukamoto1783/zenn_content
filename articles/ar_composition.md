@@ -238,13 +238,17 @@ AR Foundation を使用することで、単一のコードベースで iOS/Andr
 
 ### 4. Kotlin/Swift + Unity
 
-Unity で開発した AR コンテンツをネイティブアプリに組み込む場合に採用されます。
+「Unity as a Library」 を使用して、Unity で開発した AR コンテンツをネイティブアプリに組み込む場合に採用されます。
 ネイティブアプリ上の一部だけ、高度な AR コンテンツや AR ゲーム要素を組み込みたい場合に有効な手段となります。
 
 AR 機能は Unity 側で実装することになるため、ネイティブアプリ側では、特段 AR 機能を意識する必要はありません。
 そのため、「ネイティブアプリチーム」と「Unity AR アプリチーム」のように開発を分担することも可能です。
 
 ただし、Unity で開発したコンテンツ（build/export したファイル）を、ネイティブアプリに組み込むためには、各種設定やパフォーマンスの最適化など諸々の追加対応が必要となるため、開発側としてはかなり複雑になります。
+
+https://unity.com/ja/features/unity-as-a-library
+
+![](https://storage.googleapis.com/zenn-user-upload/0f9886874fae-20251031.png)
 
 <br>
 
