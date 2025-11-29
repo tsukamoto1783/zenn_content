@@ -293,7 +293,7 @@ Unity についてはあまり詳しくないので、先人の知恵(記事)を
 
 → ここだけで結構の量になったので、別記事に切り出しました。
 
-<作成中...>
+https://zenn.dev/ncdc/articles/android_call_unity
 
 <br>
 
