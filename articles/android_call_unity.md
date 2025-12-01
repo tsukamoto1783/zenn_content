@@ -59,10 +59,9 @@ https://unity.com/ja/features/unity-as-a-library
     - Export Project にチェックを入れる
       ![](https://storage.googleapis.com/zenn-user-upload/878194b28ec9-20251128.png)
 
-1.  Export ボタンを押下して実行
-    - Export 先のフォルダを選択できるので、"NewFolder"で適当に Export 用のフォルダを作成し、"Choose"を押下。
-      ![](https://storage.googleapis.com/zenn-user-upload/d3d1a2e6dbdd-20251128.png)
-      ![](https://storage.googleapis.com/zenn-user-upload/6817e0eba82f-20251128.png)_↑Export 後の中身_
+1.  Export ボタンを押下して実行 - Export 先のフォルダを選択できるので、"NewFolder"で適当に Export 用のフォルダを作成(ここでは"build"として作成)し、"Choose"を押下。
+    ![](https://storage.googleapis.com/zenn-user-upload/eb453baeffd8-20251201.png)
+    ![](https://storage.googleapis.com/zenn-user-upload/6817e0eba82f-20251128.png)_↑Export 後の中身_
 
 <br>
 
