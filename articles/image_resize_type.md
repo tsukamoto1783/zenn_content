@@ -1,5 +1,5 @@
 ---
-title: "画像リサイズ系関数の裏側では何が起きている？補間アルゴリズムの違いを知ろう"
+title: "画像のリサイズ関数の裏側では何が起きている？~補間アルゴリズムの違いを知ろう~"
 emoji: "🖼️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["image", "resize", "opencv", "frontend", flutter]
