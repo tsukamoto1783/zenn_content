@@ -3,7 +3,7 @@ title: "【モバイル開発】Mac PC ストレージが逼迫したときの�
 emoji: "🧹"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [mac, xcode, android, flutter, ios]
-published: false
+published: true
 publication_name: ncdc
 ---
 
